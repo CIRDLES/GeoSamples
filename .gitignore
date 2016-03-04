@@ -1,0 +1,24 @@
+# Gradle
+.gradle/
+build/
+
+# Netbeans
+nbactions.xml
+.nb-*
+private/
+
+# Intellij
+.idea/
+*.iml
+
+# logs
+*.log
+
+# Vim
+*.swp
+
+# OS X
+.DS_Store
+
+# XML
+*.xml
