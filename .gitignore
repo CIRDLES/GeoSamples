@@ -10,9 +10,6 @@ nbproject/
 .idea/
 *.iml
 
-# Generated
-*.xml
-
 test_*
 
 
