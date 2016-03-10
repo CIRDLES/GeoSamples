@@ -1,24 +1,20 @@
-# Gradle
-.gradle/
-build/
+# Maven
+target
 
 # Netbeans
 nbactions.xml
-.nb-*
-private/
+dependency-reduced-pom.xml
+nbproject/
 
-# Intellij
+# IntelliJ
 .idea/
 *.iml
 
-# logs
-*.log
-
-# Vim
-*.swp
-
-# OS X
-.DS_Store
-
-# XML
+# Generated
 *.xml
+
+test_*
+
+
+# MACOS
+.DS_Store

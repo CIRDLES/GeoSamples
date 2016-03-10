@@ -18,13 +18,27 @@
  * See <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
  * Any modifications to this file will be lost upon recompilation of the source schema. 
  * Generated on: 2016.03.03 at 09:06:25 AM EST 
+ *
+ * Additional functionality supporting this class is included.
  */
 package org.geosamples.samples;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -34,6 +48,21 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.util.EntityUtils;
 
 /**
  * <p>
@@ -169,6 +198,97 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlRootElement(name = "samples")
 public class Samples {
 
+    public static Samples deserializeProductionSesar3IGSN(String igsn)
+            throws IOException, JAXBException {
+        String productionService3 = "https://sesar3.geoinfogeochem.org/sample/igsn/";
+        return deserializeIGSN(productionService3 + igsn);
+    }
+
+    public static Samples deserializeProductionSesar2IGSN(String igsn)
+            throws IOException, JAXBException {
+        String productionService2 = "http://app.geosamples.org/sample/igsn/";
+        return deserializeIGSN(productionService2 + igsn);
+    }
+    
+    public static Samples deserializeTestIGSN(String igsn)
+            throws IOException, JAXBException {
+        String testService = "http://sesardev.geoinfogeochem.org/sample/igsn/";
+        return deserializeIGSN(testService + igsn);
+    }
+
+    /**
+     * This method relaxes SSL constraints because geosamples does not yet provide certificate.
+     * Thanks to: Tom  http://literatejava.com/networks/ignore-ssl-certificate-errors-apache-httpclient-4-4/
+     * @param serviceWithIgsn
+     * @return
+     * @throws IOException
+     * @throws JAXBException 
+     */
+    private static Samples deserializeIGSN(String serviceWithIgsn)
+            throws IOException, JAXBException {
+        Samples samples = null;
+
+        // start code from Tom (see above) *************************************
+        HttpClientBuilder b = HttpClientBuilder.create();
+
+        // setup a Trust Strategy that allows all certificates.
+        SSLContext sslContext = null;
+
+        try {
+            sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+                @Override
+                public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+                    return true;
+                }
+            }).build();
+        } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException noSuchAlgorithmException) {
+        }
+
+        b.setSSLContext(sslContext);
+
+        // don't check Hostnames, either.
+        HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
+
+        // here's the special part:
+        //      -- need to create an SSL Socket Factory, to use our weakened "trust strategy";
+        //      -- and create a Registry, to register it.
+        //
+        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
+        Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
+                .register("http", PlainConnectionSocketFactory.getSocketFactory())
+                .register("https", sslSocketFactory)
+                .build();
+
+        // now, we create connection-manager using our Registry.
+        //      -- allows multi-threaded use
+        PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+        b.setConnectionManager(connMgr);
+
+        CloseableHttpClient httpClient = b.build();
+        
+        // end  code from Tom (see above) *************************************
+
+        org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceWithIgsn);
+        httpGet.setHeader("accept:", "application/xml");
+
+        CloseableHttpResponse httpResponse = null;
+        try {
+            httpResponse = httpClient.execute(httpGet);
+            HttpEntity myEntity = httpResponse.getEntity();
+            InputStream response = myEntity.getContent();
+
+            JAXBContext jaxbContext = JAXBContext.newInstance(Samples.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            samples = (Samples) jaxbUnmarshaller.unmarshal(response);
+            // ensure it is fully consumed
+            EntityUtils.consume(myEntity);
+        } finally {
+            httpResponse.close();
+        }
+
+        return samples;
+    }
+
     @XmlElement(required = true)
     protected List<Samples.Sample> sample;
 
@@ -193,6 +313,7 @@ public class Samples {
      * {@link Samples.Sample }
      *
      *
+     * @return
      */
     public List<Samples.Sample> getSample() {
         if (sample == null) {
@@ -322,9 +443,9 @@ public class Samples {
     @XmlType(name = "", propOrder = {})
     public static class Sample {
 
-        @XmlElement(name = "barcode_img_src")
+        @XmlElement(name = "qrcode_img_src")
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String barcodeIimgSrc;
+        protected String qrcodeIimgSrc;
         @XmlElement(name = "user_code", required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String userCode;
@@ -492,23 +613,23 @@ public class Samples {
         protected Samples.Sample.Children children;
 
         /**
-         * Gets the value of the barcodeIimgSrc property.
+         * Gets the value of the qrcodeIimgSrc property.
          *
          * @return possible object is {@link String }
          *
          */
-        public String getBarcodeIimgSrc() {
-            return barcodeIimgSrc;
+        public String getQrcodeIimgSrc() {
+            return qrcodeIimgSrc;
         }
 
         /**
          * Sets the value of the barcodeIimgSrc property.
          *
-         * @param barcodeIimgSrc allowed object is {@link String }
+         * @param qrcodeIimgSrc allowed object is {@link String }
          *
          */
-        public void setBarcodeIimgSrc(String barcodeIimgSrc) {
-            this.barcodeIimgSrc = barcodeIimgSrc;
+        public void setBarcodeIimgSrc(String qrcodeIimgSrc) {
+            this.qrcodeIimgSrc = qrcodeIimgSrc;
         }
 
         /**
@@ -1920,7 +2041,7 @@ public class Samples {
              */
             public List<Samples.Sample.ExternalUrls.ExternalUrl> getExternalUrl() {
                 if (externalUrl == null) {
-                    externalUrl = new ArrayList<Samples.Sample.ExternalUrls.ExternalUrl>();
+                    externalUrl = new ArrayList<>();
                 }
                 return this.externalUrl;
             }
@@ -2083,13 +2204,16 @@ public class Samples {
              */
             public List<String> getSampleOtherName() {
                 if (sampleOtherName == null) {
-                    sampleOtherName = new ArrayList<String>();
+                    sampleOtherName = new ArrayList<>();
                 }
                 return this.sampleOtherName;
             }
 
         }
 
+        /**
+         * Schema does not specify, but GeoSamples query returns
+         */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "samples"
@@ -2101,13 +2225,16 @@ public class Samples {
 
             public List<Samples> getSamples() {
                 if (samples == null) {
-                    samples = new ArrayList<Samples>();
+                    samples = new ArrayList<>();
                 }
                 return this.samples;
             }
 
         }
 
+        /**
+         * Schema does not specify, but GeoSamples query returns
+         */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "samples"
@@ -2119,13 +2246,16 @@ public class Samples {
 
             public List<Samples> getSamples() {
                 if (samples == null) {
-                    samples = new ArrayList<Samples>();
+                    samples = new ArrayList<>();
                 }
                 return this.samples;
             }
 
         }
 
+        /**
+         * Schema does not specify, but GeoSamples query returns
+         */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "samples"
@@ -2137,7 +2267,7 @@ public class Samples {
 
             public List<Samples> getSamples() {
                 if (samples == null) {
-                    samples = new ArrayList<Samples>();
+                    samples = new ArrayList<>();
                 }
                 return this.samples;
             }
