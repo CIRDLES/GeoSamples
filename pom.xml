@@ -21,7 +21,7 @@
     <groupId>org.geosamples</groupId>
     <artifactId>GeoSamples</artifactId>
     <name>GeoSamples</name>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <description>Java helper classes for GeoSamples.org Samples</description>
     <url>https://geosamples.org</url>
     <inceptionYear>2016</inceptionYear>

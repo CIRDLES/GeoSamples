@@ -30,12 +30,8 @@ import java.math.BigInteger;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -48,21 +44,13 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.parsers.ParserConfigurationException;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.config.Registry;
-import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
+import org.xml.sax.SAXException;
 
 /**
  * <p>
@@ -202,83 +190,96 @@ import org.apache.http.util.EntityUtils;
 @XmlRootElement(name = "samples")
 public class Samples {
 
+    /**
+     * Deserializes XML response to query for IGSN sample metadata from
+     * GeoSamples.org, using development version 3 of service.
+     *
+     * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
+     * services</a>
+     * @param igsn  
+     * @return Samples
+     * @throws IOException
+     * @throws JAXBException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws org.xml.sax.SAXException
+     * @throws java.security.KeyStoreException
+     * @throws java.security.KeyManagementException
+     */
     public static Samples deserializeProductionSesar3IGSN(String igsn)
-            throws IOException, JAXBException {
+            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String productionService3 = "https://sesar3.geoinfogeochem.org/sample/igsn/";
         return deserializeIGSN(productionService3 + igsn);
     }
 
+    /**
+     * Deserializes XML response to query for IGSN sample metadata from
+     * GeoSamples.org, using production version 2 of service.
+     *
+     * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
+     * services</a>
+     * @param igsn
+     * @return Samples
+     * @throws IOException
+     * @throws JAXBException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws org.xml.sax.SAXException
+     * @throws java.security.KeyStoreException
+     * @throws java.security.KeyManagementException
+     */
     public static Samples deserializeProductionSesar2IGSN(String igsn)
-            throws IOException, JAXBException {
+            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String productionService2 = "http://app.geosamples.org/sample/igsn/";
         return deserializeIGSN(productionService2 + igsn);
     }
 
+    /**
+     * Deserializes XML response to query for IGSN sample metadata from
+     * GeoSamples.org, using the test service.
+     *
+     * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
+     * services</a>
+     * @param igsn
+     * @return Samples
+     * @throws IOException
+     * @throws JAXBException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws org.xml.sax.SAXException
+     * @throws java.security.KeyStoreException
+     * @throws java.security.KeyManagementException
+     */
     public static Samples deserializeTestIGSN(String igsn)
-            throws IOException, JAXBException {
+            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String testService = "http://sesardev.geoinfogeochem.org/sample/igsn/";
         return deserializeIGSN(testService + igsn);
     }
 
     /**
-     * This method relaxes SSL constraints because geosamples does not yet
-     * provide certificate. Thanks to: Tom
-     * http://literatejava.com/networks/ignore-ssl-certificate-errors-apache-httpclient-4-4/
+     * Deserializes XML response to query for IGSN sample metadata from
+     * GeoSamples.org, using the specified serviceWithIgsn string.
      *
      * @param serviceWithIgsn
-     * @return
+     * @return Samples
      * @throws IOException
      * @throws JAXBException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws org.xml.sax.SAXException
+     * @throws java.security.KeyStoreException
+     * @throws java.security.KeyManagementException
      */
     private static Samples deserializeIGSN(String serviceWithIgsn)
-            throws IOException, JAXBException {
+            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         Samples samples = null;
 
-        // start code from Tom (see above) *************************************
-        HttpClientBuilder b = HttpClientBuilder.create();
+        CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
 
-        // setup a Trust Strategy that allows all certificates.
-        SSLContext sslContext = null;
-
-        try {
-            sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
-                @Override
-                public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-                    return true;
-                }
-            }).build();
-        } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException noSuchAlgorithmException) {
-        }
-
-        b.setSSLContext(sslContext);
-
-        // don't check Hostnames, either.
-        HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
-
-        // here's the special part:
-        //      -- need to create an SSL Socket Factory, to use our weakened "trust strategy";
-        //      -- and create a Registry, to register it.
-        //
-        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-        Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-                .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                .register("https", sslSocketFactory)
-                .build();
-
-        // now, we create connection-manager using our Registry.
-        //      -- allows multi-threaded use
-        PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-        b.setConnectionManager(connMgr);
-
-        CloseableHttpClient httpClient = b.build();
-
-        // end  code from Tom (see above) *************************************
         org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceWithIgsn);
         httpGet.setHeader("accept:", "application/xml");
 
-        CloseableHttpResponse httpResponse = null;
-        try {
-            httpResponse = httpClient.execute(httpGet);
+        try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
             HttpEntity myEntity = httpResponse.getEntity();
             InputStream response = myEntity.getContent();
 
@@ -287,7 +288,7 @@ public class Samples {
             samples = (Samples) jaxbUnmarshaller.unmarshal(response);
             // ensure it is fully consumed
             EntityUtils.consume(myEntity);
-        } finally {
+
             httpResponse.close();
         }
 
