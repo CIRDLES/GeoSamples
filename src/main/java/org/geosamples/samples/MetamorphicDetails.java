@@ -18,40 +18,44 @@
  * See <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
  * Any modifications to this file will be lost upon recompilation of the source schema. 
  * Generated on: 2016.03.03 at 09:06:25 AM EST 
-*/
-
-
+ */
 package org.geosamples.samples;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for MetamorphicDetails.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Java class for MetamorphicDetails.
+ *
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ *
  * <pre>
- * &lt;simpleType name="MetamorphicDetails">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="Calc-Silicate"/>
- *     &lt;enumeration value="Eclogite"/>
- *     &lt;enumeration value="Gneiss"/>
- *     &lt;enumeration value="Granofels"/>
- *     &lt;enumeration value="Granulite"/>
- *     &lt;enumeration value="MechanicallyBroken"/>
- *     &lt;enumeration value="Meta-Carbonate"/>
- *     &lt;enumeration value="Meta-Ultramafic"/>
- *     &lt;enumeration value="Metasedimentary"/>
- *     &lt;enumeration value="Metasomatic"/>
- *     &lt;enumeration value="Schist"/>
- *     &lt;enumeration value="Slate"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * {@code
+ * <xml>
+ * <simpleType name="MetamorphicDetails">
+ *   <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ * <enumeration value="Calc-Silicate"/>
+ * <enumeration value="Eclogite"/>
+ * <enumeration value="Gneiss"/>
+ * <enumeration value="Granofels"/>
+ * <enumeration value="Granulite"/>
+ * <enumeration value="MechanicallyBroken"/>
+ * <enumeration value="Meta-Carbonate"/>
+ * <enumeration value="Meta-Ultramafic"/>
+ * <enumeration value="Metasedimentary"/>
+ * <enumeration value="Metasomatic"/>
+ * <enumeration value="Schist"/>
+ * <enumeration value="Slate"/>
+ * </restriction>
+ * </simpleType>
+ * </xml> 
+ * }
  * </pre>
- * 
+ *
  */
 @XmlType(name = "MetamorphicDetails")
 @XmlEnum
@@ -92,7 +96,7 @@ public enum MetamorphicDetails {
     }
 
     public static MetamorphicDetails fromValue(String v) {
-        for (MetamorphicDetails c: MetamorphicDetails.values()) {
+        for (MetamorphicDetails c : MetamorphicDetails.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

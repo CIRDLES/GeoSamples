@@ -73,120 +73,124 @@ import org.apache.http.util.EntityUtils;
  * this class.
  *
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="sample" maxOccurs="unbounded">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;all>
- *                   &lt;element ref="{http://app.geosamples.org}user_code"/>
- *                   &lt;element ref="{http://app.geosamples.org}sample_type"/>
- *                   &lt;element ref="{http://app.geosamples.org}name"/>
- *                   &lt;element ref="{http://app.geosamples.org}material"/>
- *                   &lt;element ref="{http://app.geosamples.org}igsn" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}parent_igsn" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}is_private" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}publish_date" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}classification" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}classification_comment" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}field_name" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}description" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}age_min" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}age_max" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}age_unit" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}geological_age" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}geological_unit" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collection_method" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collection_method_descr" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}size" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}size_unit" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}sample_comment" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}purpose" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}latitude" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}longitude" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}latitude_end" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}longitude_end" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}elevation" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}elevation_end" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}vertical_datum" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}northing" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}easting" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}zone" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}navigation_type" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}primary_location_type" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}primary_location_name" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}location_description" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}locality" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}locality_description" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}country" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}province" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}county" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}city" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}cruise_field_prgrm" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}platform_type" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}platform_name" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}platform_descr" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}launch_platform_name" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}launch_id" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}launch_type_name" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collector" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collector_detail" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collection_start_date" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collection_end_date" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}collection_date_precision" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}current_archive" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}current_archive_contact" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}original_archive" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}original_archive_contact" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}depth_min" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}depth_max" minOccurs="0"/>
- *                   &lt;element ref="{http://app.geosamples.org}depth_scale" minOccurs="0"/>
- *                   &lt;element name="sample_other_names" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element ref="{http://app.geosamples.org}sample_other_name" maxOccurs="unbounded"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="external_urls" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="external_url" maxOccurs="unbounded">
- *                               &lt;complexType>
- *                                 &lt;complexContent>
- *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;sequence>
- *                                       &lt;element ref="{http://app.geosamples.org}url"/>
- *                                       &lt;element ref="{http://app.geosamples.org}description" minOccurs="0"/>
- *                                       &lt;element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
- *                                     &lt;/sequence>
- *                                   &lt;/restriction>
- *                                 &lt;/complexContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/all>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * {@code
+ * <xml>
+ * <complexType>
+ *   <complexContent>
+ *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       <sequence>
+ *         <element name="sample" maxOccurs="unbounded">
+ *           <complexType>
+ *             <complexContent>
+ *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 <all>
+ *                   <element ref="{http://app.geosamples.org}user_code"/>
+ *                   <element ref="{http://app.geosamples.org}sample_type"/>
+ *                   <element ref="{http://app.geosamples.org}name"/>
+ *                   <element ref="{http://app.geosamples.org}material"/>
+ *                   <element ref="{http://app.geosamples.org}igsn" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}parent_igsn" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}is_private" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}publish_date" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}classification" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}classification_comment" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}field_name" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}description" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}age_min" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}age_max" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}age_unit" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}geological_age" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}geological_unit" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collection_method" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collection_method_descr" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}size" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}size_unit" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}sample_comment" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}purpose" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}latitude" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}longitude" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}latitude_end" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}longitude_end" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}elevation" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}elevation_end" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}vertical_datum" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}northing" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}easting" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}zone" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}navigation_type" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}primary_location_type" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}primary_location_name" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}location_description" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}locality" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}locality_description" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}country" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}province" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}county" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}city" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}cruise_field_prgrm" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}platform_type" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}platform_name" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}platform_descr" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}launch_platform_name" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}launch_id" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}launch_type_name" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collector" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collector_detail" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collection_start_date" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collection_end_date" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}collection_date_precision" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}current_archive" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}current_archive_contact" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}original_archive" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}original_archive_contact" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}depth_min" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}depth_max" minOccurs="0"/>
+ *                   <element ref="{http://app.geosamples.org}depth_scale" minOccurs="0"/>
+ *                   <element name="sample_other_names" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <sequence>
+ *                             <element ref="{http://app.geosamples.org}sample_other_name" maxOccurs="unbounded"/>
+ *                           </sequence>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                   <element name="external_urls" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <sequence>
+ *                             <element name="external_url" maxOccurs="unbounded">
+ *                               <complexType>
+ *                                 <complexContent>
+ *                                   <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     <sequence>
+ *                                       <element ref="{http://app.geosamples.org}url"/>
+ *                                       <element ref="{http://app.geosamples.org}description" minOccurs="0"/>
+ *                                       <element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
+ *                                     </sequence>
+ *                                   </restriction>
+ *                                 </complexContent>
+ *                               </complexType>
+ *                             </element>
+ *                           </sequence>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                 </all>
+ *               </restriction>
+ *             </complexContent>
+ *           </complexType>
+ *         </element>
+ *       </sequence>
+ *     </restriction>
+ *   </complexContent>
+ * </complexType>
+ * </xml>
+ * }
  * </pre>
  *
  *
@@ -209,7 +213,7 @@ public class Samples {
         String productionService2 = "http://app.geosamples.org/sample/igsn/";
         return deserializeIGSN(productionService2 + igsn);
     }
-    
+
     public static Samples deserializeTestIGSN(String igsn)
             throws IOException, JAXBException {
         String testService = "http://sesardev.geoinfogeochem.org/sample/igsn/";
@@ -217,12 +221,14 @@ public class Samples {
     }
 
     /**
-     * This method relaxes SSL constraints because geosamples does not yet provide certificate.
-     * Thanks to: Tom  http://literatejava.com/networks/ignore-ssl-certificate-errors-apache-httpclient-4-4/
+     * This method relaxes SSL constraints because geosamples does not yet
+     * provide certificate. Thanks to: Tom
+     * http://literatejava.com/networks/ignore-ssl-certificate-errors-apache-httpclient-4-4/
+     *
      * @param serviceWithIgsn
      * @return
      * @throws IOException
-     * @throws JAXBException 
+     * @throws JAXBException
      */
     private static Samples deserializeIGSN(String serviceWithIgsn)
             throws IOException, JAXBException {
@@ -265,9 +271,8 @@ public class Samples {
         b.setConnectionManager(connMgr);
 
         CloseableHttpClient httpClient = b.build();
-        
-        // end  code from Tom (see above) *************************************
 
+        // end  code from Tom (see above) *************************************
         org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceWithIgsn);
         httpGet.setHeader("accept:", "application/xml");
 
@@ -331,110 +336,114 @@ public class Samples {
      * within this class.
      *
      * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;all>
-     *         &lt;element ref="{http://app.geosamples.org}user_code"/>
-     *         &lt;element ref="{http://app.geosamples.org}sample_type"/>
-     *         &lt;element ref="{http://app.geosamples.org}name"/>
-     *         &lt;element ref="{http://app.geosamples.org}material"/>
-     *         &lt;element ref="{http://app.geosamples.org}igsn" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}parent_igsn" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}is_private" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}publish_date" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}classification" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}classification_comment" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}field_name" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}description" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}age_min" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}age_max" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}age_unit" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}geological_age" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}geological_unit" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collection_method" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collection_method_descr" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}size" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}size_unit" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}sample_comment" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}purpose" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}latitude" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}longitude" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}latitude_end" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}longitude_end" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}elevation" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}elevation_end" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}vertical_datum" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}northing" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}easting" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}zone" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}navigation_type" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}primary_location_type" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}primary_location_name" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}location_description" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}locality" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}locality_description" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}country" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}province" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}county" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}city" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}cruise_field_prgrm" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}platform_type" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}platform_name" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}platform_descr" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}launch_platform_name" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}launch_id" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}launch_type_name" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collector" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collector_detail" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collection_start_date" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collection_end_date" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}collection_date_precision" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}current_archive" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}current_archive_contact" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}original_archive" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}original_archive_contact" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}depth_min" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}depth_max" minOccurs="0"/>
-     *         &lt;element ref="{http://app.geosamples.org}depth_scale" minOccurs="0"/>
-     *         &lt;element name="sample_other_names" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element ref="{http://app.geosamples.org}sample_other_name" maxOccurs="unbounded"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="external_urls" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="external_url" maxOccurs="unbounded">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element ref="{http://app.geosamples.org}url"/>
-     *                             &lt;element ref="{http://app.geosamples.org}description" minOccurs="0"/>
-     *                             &lt;element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
-     *                           &lt;/sequence>
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/all>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
+     * {@code
+     * <xml>
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <all>
+     *         <element ref="{http://app.geosamples.org}user_code"/>
+     *         <element ref="{http://app.geosamples.org}sample_type"/>
+     *         <element ref="{http://app.geosamples.org}name"/>
+     *         <element ref="{http://app.geosamples.org}material"/>
+     *         <element ref="{http://app.geosamples.org}igsn" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}parent_igsn" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}is_private" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}publish_date" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}classification" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}classification_comment" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}field_name" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}description" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}age_min" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}age_max" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}age_unit" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}geological_age" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}geological_unit" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collection_method" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collection_method_descr" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}size" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}size_unit" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}sample_comment" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}purpose" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}latitude" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}longitude" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}latitude_end" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}longitude_end" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}elevation" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}elevation_end" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}vertical_datum" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}northing" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}easting" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}zone" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}navigation_type" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}primary_location_type" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}primary_location_name" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}location_description" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}locality" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}locality_description" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}country" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}province" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}county" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}city" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}cruise_field_prgrm" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}platform_type" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}platform_name" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}platform_descr" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}launch_platform_name" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}launch_id" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}launch_type_name" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collector" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collector_detail" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collection_start_date" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collection_end_date" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}collection_date_precision" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}current_archive" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}current_archive_contact" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}original_archive" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}original_archive_contact" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}depth_min" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}depth_max" minOccurs="0"/>
+     *         <element ref="{http://app.geosamples.org}depth_scale" minOccurs="0"/>
+     *         <element name="sample_other_names" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <sequence>
+     *                   <element ref="{http://app.geosamples.org}sample_other_name" maxOccurs="unbounded"/>
+     *                 </sequence>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *         <element name="external_urls" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <sequence>
+     *                   <element name="external_url" maxOccurs="unbounded">
+     *                     <complexType>
+     *                       <complexContent>
+     *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           <sequence>
+     *                             <element ref="{http://app.geosamples.org}url"/>
+     *                             <element ref="{http://app.geosamples.org}description" minOccurs="0"/>
+     *                             <element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
+     *                           </sequence>
+     *                         </restriction>
+     *                       </complexContent>
+     *                     </complexType>
+     *                   </element>
+     *                 </sequence>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *       </all>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * </xml>
+     * }
      * </pre>
      *
      *
@@ -1982,27 +1991,31 @@ public class Samples {
          * contained within this class.
          *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="external_url" maxOccurs="unbounded">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element ref="{http://app.geosamples.org}url"/>
-         *                   &lt;element ref="{http://app.geosamples.org}description" minOccurs="0"/>
-         *                   &lt;element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
-         *                 &lt;/sequence>
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <sequence>
+         *         <element name="external_url" maxOccurs="unbounded">
+         *           <complexType>
+         *             <complexContent>
+         *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 <sequence>
+         *                   <element ref="{http://app.geosamples.org}url"/>
+         *                   <element ref="{http://app.geosamples.org}description" minOccurs="0"/>
+         *                   <element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
+         *                 </sequence>
+         *               </restriction>
+         *             </complexContent>
+         *           </complexType>
+         *         </element>
+         *       </sequence>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
          *
          *
@@ -2055,17 +2068,21 @@ public class Samples {
              * contained within this class.
              *
              * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element ref="{http://app.geosamples.org}url"/>
-             *         &lt;element ref="{http://app.geosamples.org}description" minOccurs="0"/>
-             *         &lt;element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
-             *       &lt;/sequence>
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
+             * {@code
+             * <xml>
+             * <complexType>
+             *   <complexContent>
+             *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *       <sequence>
+             *         <element ref="{http://app.geosamples.org}url"/>
+             *         <element ref="{http://app.geosamples.org}description" minOccurs="0"/>
+             *         <element ref="{http://app.geosamples.org}url_type" minOccurs="0"/>
+             *       </sequence>
+             *     </restriction>
+             *   </complexContent>
+             * </complexType>
+             * </xml>
+             * }
              * </pre>
              *
              *
@@ -2157,15 +2174,19 @@ public class Samples {
          * contained within this class.
          *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element ref="{http://app.geosamples.org}sample_other_name" maxOccurs="unbounded"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <sequence>
+         *         <element ref="{http://app.geosamples.org}sample_other_name" maxOccurs="unbounded"/>
+         *       </sequence>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
          *
          *

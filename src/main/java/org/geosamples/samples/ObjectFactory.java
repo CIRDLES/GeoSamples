@@ -127,6 +127,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Samples }
      * 
+     * @return Samples
      */
     public Samples createSamples() {
         return new Samples();
@@ -135,6 +136,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification }
      * 
+     * @return Classification
      */
     public Classification createClassification() {
         return new Classification();
@@ -143,6 +145,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link IgneousType }
      * 
+     * @return IgneousType
      */
     public IgneousType createIgneousType() {
         return new IgneousType();
@@ -151,6 +154,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Rock }
      * 
+     * @return Classification.Rock
      */
     public Classification.Rock createClassificationRock() {
         return new Classification.Rock();
@@ -159,6 +163,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Rock.Xenolithic }
      * 
+     * @return Classification.Rock.Xenolithic
      */
     public Classification.Rock.Xenolithic createClassificationRockXenolithic() {
         return new Classification.Rock.Xenolithic();
@@ -167,6 +172,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Biology }
      * 
+     * @return Classification.Biology
      */
     public Classification.Biology createClassificationBiology() {
         return new Classification.Biology();
@@ -175,6 +181,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Samples.Sample }
      * 
+     * @return Samples.Sample
      */
     public Samples.Sample createSamplesSample() {
         return new Samples.Sample();
@@ -183,6 +190,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Samples.Sample.ExternalUrls }
      * 
+     * @return Samples.Sample.ExternalUrls
      */
     public Samples.Sample.ExternalUrls createSamplesSampleExternalUrls() {
         return new Samples.Sample.ExternalUrls();
@@ -191,6 +199,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Mineral }
      * 
+     * @return Classification.Mineral
      */
     public Classification.Mineral createClassificationMineral() {
         return new Classification.Mineral();
@@ -199,6 +208,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link IgneousType.Plutonic }
      * 
+     * @return IgneousType.Plutonic
      */
     public IgneousType.Plutonic createIgneousTypePlutonic() {
         return new IgneousType.Plutonic();
@@ -207,6 +217,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link IgneousType.Volcanic }
      * 
+     * @return 
      */
     public IgneousType.Volcanic createIgneousTypeVolcanic() {
         return new IgneousType.Volcanic();
@@ -215,6 +226,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Rock.Metamorphic }
      * 
+     * @return 
      */
     public Classification.Rock.Metamorphic createClassificationRockMetamorphic() {
         return new Classification.Rock.Metamorphic();
@@ -223,6 +235,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Rock.Ore }
      * 
+     * @return 
      */
     public Classification.Rock.Ore createClassificationRockOre() {
         return new Classification.Rock.Ore();
@@ -231,6 +244,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Rock.Sedimentary }
      * 
+     * @return 
      */
     public Classification.Rock.Sedimentary createClassificationRockSedimentary() {
         return new Classification.Rock.Sedimentary();
@@ -239,6 +253,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Rock.Xenolithic.Metamorphic }
      * 
+     * @return 
      */
     public Classification.Rock.Xenolithic.Metamorphic createClassificationRockXenolithicMetamorphic() {
         return new Classification.Rock.Xenolithic.Metamorphic();
@@ -247,6 +262,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Classification.Biology.Macrobiology }
      * 
+     * @return 
      */
     public Classification.Biology.Macrobiology createClassificationBiologyMacrobiology() {
         return new Classification.Biology.Macrobiology();
@@ -255,6 +271,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Samples.Sample.SampleOtherNames }
      * 
+     * @return 
      */
     public Samples.Sample.SampleOtherNames createSamplesSampleSampleOtherNames() {
         return new Samples.Sample.SampleOtherNames();
@@ -263,6 +280,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Samples.Sample.ExternalUrls.ExternalUrl }
      * 
+     * @return 
      */
     public Samples.Sample.ExternalUrls.ExternalUrl createSamplesSampleExternalUrlsExternalUrl() {
         return new Samples.Sample.ExternalUrls.ExternalUrl();
@@ -271,635 +289,765 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "url")
     public JAXBElement<String> createUrl(String value) {
-        return new JAXBElement<String>(_Url_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Url_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collector_detail")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectorDetail(String value) {
-        return new JAXBElement<String>(_CollectorDetail_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CollectorDetail_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "country")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCountry(String value) {
-        return new JAXBElement<String>(_Country_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Country_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "size")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSize(String value) {
-        return new JAXBElement<String>(_Size_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Size_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "primary_location_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPrimaryLocationType(String value) {
-        return new JAXBElement<String>(_PrimaryLocationType_QNAME, String.class, null, value);
+        return new JAXBElement<>(_PrimaryLocationType_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "county")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCounty(String value) {
-        return new JAXBElement<String>(_County_QNAME, String.class, null, value);
+        return new JAXBElement<>(_County_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "current_archive")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCurrentArchive(String value) {
-        return new JAXBElement<String>(_CurrentArchive_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CurrentArchive_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "url_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createUrlType(String value) {
-        return new JAXBElement<String>(_UrlType_QNAME, String.class, null, value);
+        return new JAXBElement<>(_UrlType_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "platform_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPlatformType(String value) {
-        return new JAXBElement<String>(_PlatformType_QNAME, String.class, null, value);
+        return new JAXBElement<>(_PlatformType_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "cruise_field_prgrm")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCruiseFieldPrgrm(String value) {
-        return new JAXBElement<String>(_CruiseFieldPrgrm_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CruiseFieldPrgrm_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "launch_platform_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLaunchPlatformName(String value) {
-        return new JAXBElement<String>(_LaunchPlatformName_QNAME, String.class, null, value);
+        return new JAXBElement<>(_LaunchPlatformName_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "sample_comment")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSampleComment(String value) {
-        return new JAXBElement<String>(_SampleComment_QNAME, String.class, null, value);
+        return new JAXBElement<>(_SampleComment_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "northing")
     public JAXBElement<BigDecimal> createNorthing(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_Northing_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_Northing_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "geological_age")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createGeologicalAge(String value) {
-        return new JAXBElement<String>(_GeologicalAge_QNAME, String.class, null, value);
+        return new JAXBElement<>(_GeologicalAge_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "age_unit")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createAgeUnit(String value) {
-        return new JAXBElement<String>(_AgeUnit_QNAME, String.class, null, value);
+        return new JAXBElement<>(_AgeUnit_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigInteger }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "is_private", defaultValue = "0")
     public JAXBElement<BigInteger> createIsPrivate(BigInteger value) {
-        return new JAXBElement<BigInteger>(_IsPrivate_QNAME, BigInteger.class, null, value);
+        return new JAXBElement<>(_IsPrivate_QNAME, BigInteger.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "latitude")
     public JAXBElement<BigDecimal> createLatitude(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_Latitude_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_Latitude_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "original_archive_contact")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createOriginalArchiveContact(String value) {
-        return new JAXBElement<String>(_OriginalArchiveContact_QNAME, String.class, null, value);
+        return new JAXBElement<>(_OriginalArchiveContact_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "size_unit")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSizeUnit(String value) {
-        return new JAXBElement<String>(_SizeUnit_QNAME, String.class, null, value);
+        return new JAXBElement<>(_SizeUnit_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "platform_descr")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPlatformDescr(String value) {
-        return new JAXBElement<String>(_PlatformDescr_QNAME, String.class, null, value);
+        return new JAXBElement<>(_PlatformDescr_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "field_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createFieldName(String value) {
-        return new JAXBElement<String>(_FieldName_QNAME, String.class, null, value);
+        return new JAXBElement<>(_FieldName_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "depth_min")
     public JAXBElement<BigDecimal> createDepthMin(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_DepthMin_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_DepthMin_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_method")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectionMethod(String value) {
-        return new JAXBElement<String>(_CollectionMethod_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CollectionMethod_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "city")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCity(String value) {
-        return new JAXBElement<String>(_City_QNAME, String.class, null, value);
+        return new JAXBElement<>(_City_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "user_code")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createUserCode(String value) {
-        return new JAXBElement<String>(_UserCode_QNAME, String.class, null, value);
+        return new JAXBElement<>(_UserCode_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_start_date")
     public JAXBElement<XMLGregorianCalendar> createCollectionStartDate(XMLGregorianCalendar value) {
-        return new JAXBElement<XMLGregorianCalendar>(_CollectionStartDate_QNAME, XMLGregorianCalendar.class, null, value);
+        return new JAXBElement<>(_CollectionStartDate_QNAME, XMLGregorianCalendar.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "depth_max")
     public JAXBElement<BigDecimal> createDepthMax(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_DepthMax_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_DepthMax_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "location_description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLocationDescription(String value) {
-        return new JAXBElement<String>(_LocationDescription_QNAME, String.class, null, value);
+        return new JAXBElement<>(_LocationDescription_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "platform_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPlatformName(String value) {
-        return new JAXBElement<String>(_PlatformName_QNAME, String.class, null, value);
+        return new JAXBElement<>(_PlatformName_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createDescription(String value) {
-        return new JAXBElement<String>(_Description_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Description_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "url_description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createUrlDescription(String value) {
-        return new JAXBElement<String>(_UrlDescription_QNAME, String.class, null, value);
+        return new JAXBElement<>(_UrlDescription_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "province")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createProvince(String value) {
-        return new JAXBElement<String>(_Province_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Province_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "locality_description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLocalityDescription(String value) {
-        return new JAXBElement<String>(_LocalityDescription_QNAME, String.class, null, value);
+        return new JAXBElement<>(_LocalityDescription_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "original_archive")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createOriginalArchive(String value) {
-        return new JAXBElement<String>(_OriginalArchive_QNAME, String.class, null, value);
+        return new JAXBElement<>(_OriginalArchive_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "longitude")
     public JAXBElement<BigDecimal> createLongitude(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_Longitude_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_Longitude_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "publish_date")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPublishDate(String value) {
-        return new JAXBElement<String>(_PublishDate_QNAME, String.class, null, value);
+        return new JAXBElement<>(_PublishDate_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "elevation")
     public JAXBElement<BigDecimal> createElevation(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_Elevation_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_Elevation_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_date_precision")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectionDatePrecision(String value) {
-        return new JAXBElement<String>(_CollectionDatePrecision_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CollectionDatePrecision_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "material")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createMaterial(String value) {
-        return new JAXBElement<String>(_Material_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Material_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "age_max")
     public JAXBElement<BigDecimal> createAgeMax(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_AgeMax_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_AgeMax_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "easting")
     public JAXBElement<BigDecimal> createEasting(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_Easting_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_Easting_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "parent_igsn")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createParentIgsn(String value) {
-        return new JAXBElement<String>(_ParentIgsn_QNAME, String.class, null, value);
+        return new JAXBElement<>(_ParentIgsn_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "igsn")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createIgsn(String value) {
-        return new JAXBElement<String>(_Igsn_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Igsn_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "navigation_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createNavigationType(String value) {
-        return new JAXBElement<String>(_NavigationType_QNAME, String.class, null, value);
+        return new JAXBElement<>(_NavigationType_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link XMLGregorianCalendar }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_end_date")
     public JAXBElement<XMLGregorianCalendar> createCollectionEndDate(XMLGregorianCalendar value) {
-        return new JAXBElement<XMLGregorianCalendar>(_CollectionEndDate_QNAME, XMLGregorianCalendar.class, null, value);
+        return new JAXBElement<>(_CollectionEndDate_QNAME, XMLGregorianCalendar.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "zone")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createZone(String value) {
-        return new JAXBElement<String>(_Zone_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Zone_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "locality")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLocality(String value) {
-        return new JAXBElement<String>(_Locality_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Locality_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "launch_type_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLaunchTypeName(String value) {
-        return new JAXBElement<String>(_LaunchTypeName_QNAME, String.class, null, value);
+        return new JAXBElement<>(_LaunchTypeName_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "sample_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSampleType(String value) {
-        return new JAXBElement<String>(_SampleType_QNAME, String.class, null, value);
+        return new JAXBElement<>(_SampleType_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "longitude_end")
     public JAXBElement<BigDecimal> createLongitudeEnd(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_LongitudeEnd_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_LongitudeEnd_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "latitude_end")
     public JAXBElement<BigDecimal> createLatitudeEnd(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_LatitudeEnd_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_LatitudeEnd_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "vertical_datum")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createVerticalDatum(String value) {
-        return new JAXBElement<String>(_VerticalDatum_QNAME, String.class, null, value);
+        return new JAXBElement<>(_VerticalDatum_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "launch_id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLaunchId(String value) {
-        return new JAXBElement<String>(_LaunchId_QNAME, String.class, null, value);
+        return new JAXBElement<>(_LaunchId_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "age_min")
     public JAXBElement<BigDecimal> createAgeMin(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_AgeMin_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_AgeMin_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "classification_comment")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createClassificationComment(String value) {
-        return new JAXBElement<String>(_ClassificationComment_QNAME, String.class, null, value);
+        return new JAXBElement<>(_ClassificationComment_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "purpose")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPurpose(String value) {
-        return new JAXBElement<String>(_Purpose_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Purpose_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createName(String value) {
-        return new JAXBElement<String>(_Name_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Name_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "sample_other_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSampleOtherName(String value) {
-        return new JAXBElement<String>(_SampleOtherName_QNAME, String.class, null, value);
+        return new JAXBElement<>(_SampleOtherName_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "elevation_end")
     public JAXBElement<BigDecimal> createElevationEnd(BigDecimal value) {
-        return new JAXBElement<BigDecimal>(_ElevationEnd_QNAME, BigDecimal.class, null, value);
+        return new JAXBElement<>(_ElevationEnd_QNAME, BigDecimal.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collector")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollector(String value) {
-        return new JAXBElement<String>(_Collector_QNAME, String.class, null, value);
+        return new JAXBElement<>(_Collector_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "geological_unit")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createGeologicalUnit(String value) {
-        return new JAXBElement<String>(_GeologicalUnit_QNAME, String.class, null, value);
+        return new JAXBElement<>(_GeologicalUnit_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "primary_location_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPrimaryLocationName(String value) {
-        return new JAXBElement<String>(_PrimaryLocationName_QNAME, String.class, null, value);
+        return new JAXBElement<>(_PrimaryLocationName_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "depth_scale")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createDepthScale(String value) {
-        return new JAXBElement<String>(_DepthScale_QNAME, String.class, null, value);
+        return new JAXBElement<>(_DepthScale_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "current_archive_contact")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCurrentArchiveContact(String value) {
-        return new JAXBElement<String>(_CurrentArchiveContact_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CurrentArchiveContact_QNAME, String.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
+     * @param value
+     * @return 
      */
     @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_method_descr")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectionMethodDescr(String value) {
-        return new JAXBElement<String>(_CollectionMethodDescr_QNAME, String.class, null, value);
+        return new JAXBElement<>(_CollectionMethodDescr_QNAME, String.class, null, value);
     }
 
 }

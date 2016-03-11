@@ -18,9 +18,7 @@
  * See <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
  * Any modifications to this file will be lost upon recompilation of the source schema. 
  * Generated on: 2016.03.03 at 09:06:25 AM EST 
-*/
-
-
+ */
 package org.geosamples.samples;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -29,124 +27,130 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
+ * Java class for anonymous complex type.
+ *
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ *
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="Biology">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;choice>
- *                   &lt;element name="Macrobiology" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;choice>
- *                             &lt;element name="MacrobiologyType" type="{http://app.geosamples.org}MacrobiologyDetails" minOccurs="0"/>
- *                           &lt;/choice>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="Microbiology" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                 &lt;/choice>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="Rock">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;choice>
- *                   &lt;element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
- *                   &lt;element name="Metamorphic" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;choice>
- *                             &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
- *                           &lt;/choice>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="Ore" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;choice>
- *                             &lt;element name="OreType" type="{http://app.geosamples.org}OreDetails" minOccurs="0"/>
- *                           &lt;/choice>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="Sedimentary" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;choice>
- *                             &lt;element name="SedimentaryType" type="{http://app.geosamples.org}SedimentaryDetails" minOccurs="0"/>
- *                           &lt;/choice>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                   &lt;element name="Xenolithic" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;choice>
- *                             &lt;element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
- *                             &lt;element name="Metamorphic" minOccurs="0">
- *                               &lt;complexType>
- *                                 &lt;complexContent>
- *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;choice>
- *                                       &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
- *                                     &lt;/choice>
- *                                   &lt;/restriction>
- *                                 &lt;/complexContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
- *                           &lt;/choice>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/choice>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="Mineral" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;choice>
- *                   &lt;element name="MineralType" type="{http://app.geosamples.org}MineralDetails" minOccurs="0"/>
- *                 &lt;/choice>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="Unknown" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * {@code
+ * <xml>
+ * <complexType>
+ *   <complexContent>
+ *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       <choice>
+ *         <element name="Biology">
+ *           <complexType>
+ *             <complexContent>
+ *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 <choice>
+ *                   <element name="Macrobiology" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <choice>
+ *                             <element name="MacrobiologyType" type="{http://app.geosamples.org}MacrobiologyDetails" minOccurs="0"/>
+ *                           </choice>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                   <element name="Microbiology" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                 </choice>
+ *               </restriction>
+ *             </complexContent>
+ *           </complexType>
+ *         </element>
+ *         <element name="Rock">
+ *           <complexType>
+ *             <complexContent>
+ *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 <choice>
+ *                   <element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
+ *                   <element name="Metamorphic" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <choice>
+ *                             <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+ *                           </choice>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                   <element name="Ore" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <choice>
+ *                             <element name="OreType" type="{http://app.geosamples.org}OreDetails" minOccurs="0"/>
+ *                           </choice>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                   <element name="Sedimentary" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <choice>
+ *                             <element name="SedimentaryType" type="{http://app.geosamples.org}SedimentaryDetails" minOccurs="0"/>
+ *                           </choice>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                   <element name="Xenolithic" minOccurs="0">
+ *                     <complexType>
+ *                       <complexContent>
+ *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           <choice>
+ *                             <element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
+ *                             <element name="Metamorphic" minOccurs="0">
+ *                               <complexType>
+ *                                 <complexContent>
+ *                                   <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     <choice>
+ *                                       <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+ *                                     </choice>
+ *                                   </restriction>
+ *                                 </complexContent>
+ *                               </complexType>
+ *                             </element>
+ *                           </choice>
+ *                         </restriction>
+ *                       </complexContent>
+ *                     </complexType>
+ *                   </element>
+ *                 </choice>
+ *               </restriction>
+ *             </complexContent>
+ *           </complexType>
+ *         </element>
+ *         <element name="Mineral" minOccurs="0">
+ *           <complexType>
+ *             <complexContent>
+ *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 <choice>
+ *                   <element name="MineralType" type="{http://app.geosamples.org}MineralDetails" minOccurs="0"/>
+ *                 </choice>
+ *               </restriction>
+ *             </complexContent>
+ *           </complexType>
+ *         </element>
+ *         <element name="Unknown" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       </choice>
+ *     </restriction>
+ *   </complexContent>
+ * </complexType>
+ * </xml>
+ * }
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -169,11 +173,9 @@ public class Classification {
 
     /**
      * Gets the value of the biology property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Classification.Biology }
-     *     
+     *
+     * @return possible object is {@link Classification.Biology }
+     *
      */
     public Classification.Biology getBiology() {
         return biology;
@@ -181,11 +183,9 @@ public class Classification {
 
     /**
      * Sets the value of the biology property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Classification.Biology }
-     *     
+     *
+     * @param value allowed object is {@link Classification.Biology }
+     *
      */
     public void setBiology(Classification.Biology value) {
         this.biology = value;
@@ -193,11 +193,9 @@ public class Classification {
 
     /**
      * Gets the value of the rock property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Classification.Rock }
-     *     
+     *
+     * @return possible object is {@link Classification.Rock }
+     *
      */
     public Classification.Rock getRock() {
         return rock;
@@ -205,11 +203,9 @@ public class Classification {
 
     /**
      * Sets the value of the rock property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Classification.Rock }
-     *     
+     *
+     * @param value allowed object is {@link Classification.Rock }
+     *
      */
     public void setRock(Classification.Rock value) {
         this.rock = value;
@@ -217,11 +213,9 @@ public class Classification {
 
     /**
      * Gets the value of the mineral property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Classification.Mineral }
-     *     
+     *
+     * @return possible object is {@link Classification.Mineral }
+     *
      */
     public Classification.Mineral getMineral() {
         return mineral;
@@ -229,11 +223,9 @@ public class Classification {
 
     /**
      * Sets the value of the mineral property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Classification.Mineral }
-     *     
+     *
+     * @param value allowed object is {@link Classification.Mineral }
+     *
      */
     public void setMineral(Classification.Mineral value) {
         this.mineral = value;
@@ -241,11 +233,9 @@ public class Classification {
 
     /**
      * Gets the value of the unknown property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     public String getUnknown() {
         return unknown;
@@ -253,46 +243,50 @@ public class Classification {
 
     /**
      * Sets the value of the unknown property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setUnknown(String value) {
         this.unknown = value;
     }
 
-
     /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
+     * Java class for anonymous complex type.
+     *
+     * <p>
+     * The following schema fragment specifies the expected content contained
+     * within this class.
+     *
      * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="Macrobiology" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice>
-     *                   &lt;element name="MacrobiologyType" type="{http://app.geosamples.org}MacrobiologyDetails" minOccurs="0"/>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="Microbiology" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
+     * {@code
+     * <xml>
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <choice>
+     *         <element name="Macrobiology" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <choice>
+     *                   <element name="MacrobiologyType" type="{http://app.geosamples.org}MacrobiologyDetails" minOccurs="0"/>
+     *                 </choice>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *         <element name="Microbiology" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *       </choice>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * </xml>
+     * }
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -308,11 +302,10 @@ public class Classification {
 
         /**
          * Gets the value of the macrobiology property.
-         * 
-         * @return
-         *     possible object is
+         *
+         * @return possible object is
          *     {@link Classification.Biology.Macrobiology }
-         *     
+         *
          */
         public Classification.Biology.Macrobiology getMacrobiology() {
             return macrobiology;
@@ -320,11 +313,10 @@ public class Classification {
 
         /**
          * Sets the value of the macrobiology property.
-         * 
-         * @param value
-         *     allowed object is
+         *
+         * @param value allowed object is
          *     {@link Classification.Biology.Macrobiology }
-         *     
+         *
          */
         public void setMacrobiology(Classification.Biology.Macrobiology value) {
             this.macrobiology = value;
@@ -332,11 +324,9 @@ public class Classification {
 
         /**
          * Gets the value of the microbiology property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getMicrobiology() {
             return microbiology;
@@ -344,35 +334,39 @@ public class Classification {
 
         /**
          * Sets the value of the microbiology property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setMicrobiology(String value) {
             this.microbiology = value;
         }
 
-
         /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
+         * Java class for anonymous complex type.
+         *
+         * <p>
+         * The following schema fragment specifies the expected content
+         * contained within this class.
+         *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice>
-         *         &lt;element name="MacrobiologyType" type="{http://app.geosamples.org}MacrobiologyDetails" minOccurs="0"/>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <choice>
+         *         <element name="MacrobiologyType" type="{http://app.geosamples.org}MacrobiologyDetails" minOccurs="0"/>
+         *       </choice>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -385,11 +379,9 @@ public class Classification {
 
             /**
              * Gets the value of the macrobiologyType property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link MacrobiologyDetails }
-             *     
+             *
+             * @return possible object is {@link MacrobiologyDetails }
+             *
              */
             public MacrobiologyDetails getMacrobiologyType() {
                 return macrobiologyType;
@@ -397,11 +389,9 @@ public class Classification {
 
             /**
              * Sets the value of the macrobiologyType property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link MacrobiologyDetails }
-             *     
+             *
+             * @param value allowed object is {@link MacrobiologyDetails }
+             *
              */
             public void setMacrobiologyType(MacrobiologyDetails value) {
                 this.macrobiologyType = value;
@@ -411,25 +401,31 @@ public class Classification {
 
     }
 
-
     /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
+     * Java class for anonymous complex type.
+     *
+     * <p>
+     * The following schema fragment specifies the expected content contained
+     * within this class.
+     *
      * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="MineralType" type="{http://app.geosamples.org}MineralDetails" minOccurs="0"/>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
+     * {@code
+     * <xml>
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <choice>
+     *         <element name="MineralType" type="{http://app.geosamples.org}MineralDetails" minOccurs="0"/>
+     *       </choice>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * </xml>
+     * }
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -442,11 +438,9 @@ public class Classification {
 
         /**
          * Gets the value of the mineralType property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is {@link String }
+         *
          */
         public String getMineralType() {
             return mineralType;
@@ -454,11 +448,9 @@ public class Classification {
 
         /**
          * Sets the value of the mineralType property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is {@link String }
+         *
          */
         public void setMineralType(String value) {
             this.mineralType = value;
@@ -466,80 +458,86 @@ public class Classification {
 
     }
 
-
     /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
+     * Java class for anonymous complex type.
+     *
+     * <p>
+     * The following schema fragment specifies the expected content contained
+     * within this class.
+     *
      * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice>
-     *         &lt;element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
-     *         &lt;element name="Metamorphic" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice>
-     *                   &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="Ore" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice>
-     *                   &lt;element name="OreType" type="{http://app.geosamples.org}OreDetails" minOccurs="0"/>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="Sedimentary" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice>
-     *                   &lt;element name="SedimentaryType" type="{http://app.geosamples.org}SedimentaryDetails" minOccurs="0"/>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *         &lt;element name="Xenolithic" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;choice>
-     *                   &lt;element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
-     *                   &lt;element name="Metamorphic" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;choice>
-     *                             &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
-     *                           &lt;/choice>
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                 &lt;/choice>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/choice>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
+     * {@code
+     * <xml>
+     * <complexType>
+     *   <complexContent>
+     *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       <choice>
+     *         <element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
+     *         <element name="Metamorphic" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <choice>
+     *                   <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+     *                 </choice>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *         <element name="Ore" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <choice>
+     *                   <element name="OreType" type="{http://app.geosamples.org}OreDetails" minOccurs="0"/>
+     *                 </choice>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *         <element name="Sedimentary" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <choice>
+     *                   <element name="SedimentaryType" type="{http://app.geosamples.org}SedimentaryDetails" minOccurs="0"/>
+     *                 </choice>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *         <element name="Xenolithic" minOccurs="0">
+     *           <complexType>
+     *             <complexContent>
+     *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 <choice>
+     *                   <element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
+     *                   <element name="Metamorphic" minOccurs="0">
+     *                     <complexType>
+     *                       <complexContent>
+     *                         <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           <choice>
+     *                             <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+     *                           </choice>
+     *                         </restriction>
+     *                       </complexContent>
+     *                     </complexType>
+     *                   </element>
+     *                 </choice>
+     *               </restriction>
+     *             </complexContent>
+     *           </complexType>
+     *         </element>
+     *       </choice>
+     *     </restriction>
+     *   </complexContent>
+     * </complexType>
+     * </xml>
+     * }
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -564,11 +562,9 @@ public class Classification {
 
         /**
          * Gets the value of the igneous property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link IgneousType }
-         *     
+         *
+         * @return possible object is {@link IgneousType }
+         *
          */
         public IgneousType getIgneous() {
             return igneous;
@@ -576,11 +572,9 @@ public class Classification {
 
         /**
          * Sets the value of the igneous property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link IgneousType }
-         *     
+         *
+         * @param value allowed object is {@link IgneousType }
+         *
          */
         public void setIgneous(IgneousType value) {
             this.igneous = value;
@@ -588,11 +582,9 @@ public class Classification {
 
         /**
          * Gets the value of the metamorphic property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Classification.Rock.Metamorphic }
-         *     
+         *
+         * @return possible object is {@link Classification.Rock.Metamorphic }
+         *
          */
         public Classification.Rock.Metamorphic getMetamorphic() {
             return metamorphic;
@@ -600,11 +592,10 @@ public class Classification {
 
         /**
          * Sets the value of the metamorphic property.
-         * 
-         * @param value
-         *     allowed object is
+         *
+         * @param value allowed object is
          *     {@link Classification.Rock.Metamorphic }
-         *     
+         *
          */
         public void setMetamorphic(Classification.Rock.Metamorphic value) {
             this.metamorphic = value;
@@ -612,11 +603,9 @@ public class Classification {
 
         /**
          * Gets the value of the ore property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Classification.Rock.Ore }
-         *     
+         *
+         * @return possible object is {@link Classification.Rock.Ore }
+         *
          */
         public Classification.Rock.Ore getOre() {
             return ore;
@@ -624,11 +613,9 @@ public class Classification {
 
         /**
          * Sets the value of the ore property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Classification.Rock.Ore }
-         *     
+         *
+         * @param value allowed object is {@link Classification.Rock.Ore }
+         *
          */
         public void setOre(Classification.Rock.Ore value) {
             this.ore = value;
@@ -636,11 +623,9 @@ public class Classification {
 
         /**
          * Gets the value of the sedimentary property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Classification.Rock.Sedimentary }
-         *     
+         *
+         * @return possible object is {@link Classification.Rock.Sedimentary }
+         *
          */
         public Classification.Rock.Sedimentary getSedimentary() {
             return sedimentary;
@@ -648,11 +633,10 @@ public class Classification {
 
         /**
          * Sets the value of the sedimentary property.
-         * 
-         * @param value
-         *     allowed object is
+         *
+         * @param value allowed object is
          *     {@link Classification.Rock.Sedimentary }
-         *     
+         *
          */
         public void setSedimentary(Classification.Rock.Sedimentary value) {
             this.sedimentary = value;
@@ -660,11 +644,9 @@ public class Classification {
 
         /**
          * Gets the value of the xenolithic property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Classification.Rock.Xenolithic }
-         *     
+         *
+         * @return possible object is {@link Classification.Rock.Xenolithic }
+         *
          */
         public Classification.Rock.Xenolithic getXenolithic() {
             return xenolithic;
@@ -672,35 +654,40 @@ public class Classification {
 
         /**
          * Sets the value of the xenolithic property.
-         * 
-         * @param value
-         *     allowed object is
+         *
+         * @param value allowed object is
          *     {@link Classification.Rock.Xenolithic }
-         *     
+         *
          */
         public void setXenolithic(Classification.Rock.Xenolithic value) {
             this.xenolithic = value;
         }
 
-
         /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
+         * Java class for anonymous complex type.
+         *
+         * <p>
+         * The following schema fragment specifies the expected content
+         * contained within this class.
+         *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice>
-         *         &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <choice>
+         *         <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+         *       </choice>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -713,11 +700,9 @@ public class Classification {
 
             /**
              * Gets the value of the metamorphicType property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link MetamorphicDetails }
-             *     
+             *
+             * @return possible object is {@link MetamorphicDetails }
+             *
              */
             public MetamorphicDetails getMetamorphicType() {
                 return metamorphicType;
@@ -725,11 +710,9 @@ public class Classification {
 
             /**
              * Sets the value of the metamorphicType property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link MetamorphicDetails }
-             *     
+             *
+             * @param value allowed object is {@link MetamorphicDetails }
+             *
              */
             public void setMetamorphicType(MetamorphicDetails value) {
                 this.metamorphicType = value;
@@ -737,25 +720,31 @@ public class Classification {
 
         }
 
-
         /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
+         * Java class for anonymous complex type.
+         *
+         * <p>
+         * The following schema fragment specifies the expected content
+         * contained within this class.
+         *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice>
-         *         &lt;element name="OreType" type="{http://app.geosamples.org}OreDetails" minOccurs="0"/>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <choice>
+         *         <element name="OreType" type="{http://app.geosamples.org}OreDetails" minOccurs="0"/>
+         *       </choice>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -768,11 +757,9 @@ public class Classification {
 
             /**
              * Gets the value of the oreType property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link OreDetails }
-             *     
+             *
+             * @return possible object is {@link OreDetails }
+             *
              */
             public OreDetails getOreType() {
                 return oreType;
@@ -780,11 +767,9 @@ public class Classification {
 
             /**
              * Sets the value of the oreType property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link OreDetails }
-             *     
+             *
+             * @param value allowed object is {@link OreDetails }
+             *
              */
             public void setOreType(OreDetails value) {
                 this.oreType = value;
@@ -792,25 +777,31 @@ public class Classification {
 
         }
 
-
         /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
+         * Java class for anonymous complex type.
+         *
+         * <p>
+         * The following schema fragment specifies the expected content
+         * contained within this class.
+         *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice>
-         *         &lt;element name="SedimentaryType" type="{http://app.geosamples.org}SedimentaryDetails" minOccurs="0"/>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <choice>
+         *         <element name="SedimentaryType" type="{http://app.geosamples.org}SedimentaryDetails" minOccurs="0"/>
+         *       </choice>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -823,11 +814,9 @@ public class Classification {
 
             /**
              * Gets the value of the sedimentaryType property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link SedimentaryDetails }
-             *     
+             *
+             * @return possible object is {@link SedimentaryDetails }
+             *
              */
             public SedimentaryDetails getSedimentaryType() {
                 return sedimentaryType;
@@ -835,11 +824,9 @@ public class Classification {
 
             /**
              * Sets the value of the sedimentaryType property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link SedimentaryDetails }
-             *     
+             *
+             * @param value allowed object is {@link SedimentaryDetails }
+             *
              */
             public void setSedimentaryType(SedimentaryDetails value) {
                 this.sedimentaryType = value;
@@ -847,36 +834,42 @@ public class Classification {
 
         }
 
-
         /**
-         * <p>Java class for anonymous complex type.
-         * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
+         * Java class for anonymous complex type.
+         *
+         * <p>
+         * The following schema fragment specifies the expected content
+         * contained within this class.
+         *
          * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;choice>
-         *         &lt;element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
-         *         &lt;element name="Metamorphic" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;choice>
-         *                   &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
-         *                 &lt;/choice>
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *       &lt;/choice>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
+         * {@code
+         * <xml>
+         * <complexType>
+         *   <complexContent>
+         *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       <choice>
+         *         <element name="Igneous" type="{http://app.geosamples.org}IgneousType" minOccurs="0"/>
+         *         <element name="Metamorphic" minOccurs="0">
+         *           <complexType>
+         *             <complexContent>
+         *               <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 <choice>
+         *                   <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+         *                 </choice>
+         *               </restriction>
+         *             </complexContent>
+         *           </complexType>
+         *         </element>
+         *       </choice>
+         *     </restriction>
+         *   </complexContent>
+         * </complexType>
+         * </xml>
+         * }
          * </pre>
-         * 
-         * 
+         *
+         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
@@ -892,11 +885,9 @@ public class Classification {
 
             /**
              * Gets the value of the igneous property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link IgneousType }
-             *     
+             *
+             * @return possible object is {@link IgneousType }
+             *
              */
             public IgneousType getIgneous() {
                 return igneous;
@@ -904,11 +895,9 @@ public class Classification {
 
             /**
              * Sets the value of the igneous property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link IgneousType }
-             *     
+             *
+             * @param value allowed object is {@link IgneousType }
+             *
              */
             public void setIgneous(IgneousType value) {
                 this.igneous = value;
@@ -916,11 +905,10 @@ public class Classification {
 
             /**
              * Gets the value of the metamorphic property.
-             * 
-             * @return
-             *     possible object is
+             *
+             * @return possible object is
              *     {@link Classification.Rock.Xenolithic.Metamorphic }
-             *     
+             *
              */
             public Classification.Rock.Xenolithic.Metamorphic getMetamorphic() {
                 return metamorphic;
@@ -928,35 +916,40 @@ public class Classification {
 
             /**
              * Sets the value of the metamorphic property.
-             * 
-             * @param value
-             *     allowed object is
+             *
+             * @param value allowed object is
              *     {@link Classification.Rock.Xenolithic.Metamorphic }
-             *     
+             *
              */
             public void setMetamorphic(Classification.Rock.Xenolithic.Metamorphic value) {
                 this.metamorphic = value;
             }
 
-
             /**
-             * <p>Java class for anonymous complex type.
-             * 
-             * <p>The following schema fragment specifies the expected content contained within this class.
-             * 
+             * <p>
+             * Java class for anonymous complex type.
+             *
+             * <p>
+             * The following schema fragment specifies the expected content
+             * contained within this class.
+             *
              * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;choice>
-             *         &lt;element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
-             *       &lt;/choice>
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
+             * {@code
+             * <xml>
+             * <complexType>
+             *   <complexContent>
+             *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *       <choice>
+             *         <element name="MetamorphicType" type="{http://app.geosamples.org}MetamorphicDetails" minOccurs="0"/>
+             *       </choice>
+             *     </restriction>
+             *   </complexContent>
+             * </complexType>
+             * </xml>
+             * }
              * </pre>
-             * 
-             * 
+             *
+             *
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
@@ -969,11 +962,9 @@ public class Classification {
 
                 /**
                  * Gets the value of the metamorphicType property.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link MetamorphicDetails }
-                 *     
+                 *
+                 * @return possible object is {@link MetamorphicDetails }
+                 *
                  */
                 public MetamorphicDetails getMetamorphicType() {
                     return metamorphicType;
@@ -981,11 +972,9 @@ public class Classification {
 
                 /**
                  * Sets the value of the metamorphicType property.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link MetamorphicDetails }
-                 *     
+                 *
+                 * @param value allowed object is {@link MetamorphicDetails }
+                 *
                  */
                 public void setMetamorphicType(MetamorphicDetails value) {
                     this.metamorphicType = value;
