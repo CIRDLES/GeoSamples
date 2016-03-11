@@ -23,4 +23,4 @@ and this reference to GeoSamples:
         <version>v.1.0.2</version>
       </dependency>
 ```
-[JavaDocs](https://jitpack.io/com/github/cirdles/GeoSamples/v.1.0.2/GeoSamples-v.1.0.2-javadoc.jar)
+[JavaDocs](https://github.com/CIRDLES/GeoSamples/releases/download/v.1.0.3/GeoSamples-1.0.3-javadoc.jar)
