@@ -18,29 +18,33 @@
  * See <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
  * Any modifications to this file will be lost upon recompilation of the source schema. 
  * Generated on: 2016.03.03 at 09:06:25 AM EST 
-*/
-
-
+ */
 package org.geosamples.samples;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for MacrobiologyDetails.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
- * <pre>
- * &lt;simpleType name="MacrobiologyDetails">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="Coral"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
- * </pre>
+ * Java class for MacrobiologyDetails.
+ *
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
+ * <pre>
+ * {@code
+ * <xml>
+ * <simpleType name="MacrobiologyDetails">
+ *   <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     <enumeration value="Coral"/>
+ *   </restriction>
+ * </simpleType>
+ * </xml>
+ * }
+ * </pre>
+ *
  */
 @XmlType(name = "MacrobiologyDetails")
 @XmlEnum
@@ -59,7 +63,7 @@ public enum MacrobiologyDetails {
     }
 
     public static MacrobiologyDetails fromValue(String v) {
-        for (MacrobiologyDetails c: MacrobiologyDetails.values()) {
+        for (MacrobiologyDetails c : MacrobiologyDetails.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

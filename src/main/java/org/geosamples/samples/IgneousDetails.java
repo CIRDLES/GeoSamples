@@ -18,33 +18,37 @@
  * See <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
  * Any modifications to this file will be lost upon recompilation of the source schema. 
  * Generated on: 2016.03.03 at 09:06:25 AM EST 
-*/
-
-
+ */
 package org.geosamples.samples;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for IgneousDetails.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
- * <pre>
- * &lt;simpleType name="IgneousDetails">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="Exotic"/>
- *     &lt;enumeration value="Felsic"/>
- *     &lt;enumeration value="Intermediate"/>
- *     &lt;enumeration value="Mafic"/>
- *     &lt;enumeration value="UltraMafic"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
- * </pre>
+ * Java class for IgneousDetails.
+ *
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
+ * <pre>
+ * {@code
+ * <xml>
+ * <simpleType name="IgneousDetails">
+ *   <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     <enumeration value="Exotic"/>
+ *     <enumeration value="Felsic"/>
+ *     <enumeration value="Intermediate"/>
+ *     <enumeration value="Mafic"/>
+ *     <enumeration value="UltraMafic"/>
+ *   </restriction>
+ * </simpleType>
+ * </xml>
+ * }
+ * </pre>
+ *
  */
 @XmlType(name = "IgneousDetails")
 @XmlEnum
@@ -71,7 +75,7 @@ public enum IgneousDetails {
     }
 
     public static IgneousDetails fromValue(String v) {
-        for (IgneousDetails c: IgneousDetails.values()) {
+        for (IgneousDetails c : IgneousDetails.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

@@ -34,21 +34,25 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="SedimentaryDetails">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="Carbonate"/>
- *     &lt;enumeration value="ConglomerateAndOrBreccia"/>
- *     &lt;enumeration value="Evaporite"/>
- *     &lt;enumeration value="GlacialAndOrPaleosol"/>
- *     &lt;enumeration value="Hybrid"/>
- *     &lt;enumeration value="Ironstone"/>
- *     &lt;enumeration value="MixedCarbAndOrSiliciclastic"/>
- *     &lt;enumeration value="MnNoduleAndOrCrust"/>
- *     &lt;enumeration value="SiliceousBiogenic"/>
- *     &lt;enumeration value="Siliciclastic"/>
- *     &lt;enumeration value="Volcaniclastic"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * {@code 
+ * <xml>
+ * <simpleType name="SedimentaryDetails">
+ *   <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     <enumeration value="Carbonate"/>
+ *     <enumeration value="ConglomerateAndOrBreccia"/>
+ *     <enumeration value="Evaporite"/>
+ *     <enumeration value="GlacialAndOrPaleosol"/>
+ *     <enumeration value="Hybrid"/>
+ *     <enumeration value="Ironstone"/>
+ *     <enumeration value="MixedCarbAndOrSiliciclastic"/>
+ *     <enumeration value="MnNoduleAndOrCrust"/>
+ *     <enumeration value="SiliceousBiogenic"/>
+ *     <enumeration value="Siliciclastic"/>
+ *     <enumeration value="Volcaniclastic"/>
+ *   </restriction>
+ * </simpleType>
+ * </xml>
+ * }
  * </pre>
  * 
  */

@@ -34,13 +34,17 @@ import javax.xml.bind.annotation.XmlType;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="OreDetails">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="Other"/>
- *     &lt;enumeration value="Oxide"/>
- *     &lt;enumeration value="Sulfide"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * {@code
+ * <xml>
+ * <simpleType name="OreDetails">
+ *   <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *     <enumeration value="Other"/>
+ *     <enumeration value="Oxide"/>
+ *     <enumeration value="Sulfide"/>
+ *   </restriction>
+ * </simpleType>
+ * </xml>
+ * }
  * </pre>
  * 
  */
