@@ -20,7 +20,7 @@ and this reference to GeoSamples:
       <dependency>
         <groupId>com.github.cirdles</groupId>
         <artifactId>GeoSamples</artifactId>
-        <version>v.1.0.2</version>
+        <version>v.1.0.3</version>
       </dependency>
 ```
 [JavaDocs](https://github.com/CIRDLES/GeoSamples/releases/download/v.1.0.3/GeoSamples-1.0.3-javadoc.jar)
