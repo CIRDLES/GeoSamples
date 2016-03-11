@@ -23,4 +23,4 @@ and this reference to GeoSamples:
         <version>v1.0.1</version>
       </dependency>
 ```
-http://www.javadoc.io/doc/org.geosamples.samples/GeoSamples/v1.0.1
+http://www.javadoc.io/doc/org.cirdles/GeoSamples/v1.0.1
