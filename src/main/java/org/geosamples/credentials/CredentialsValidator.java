@@ -38,10 +38,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author James F. Bowring
- */
 public class CredentialsValidator {
 
     /**

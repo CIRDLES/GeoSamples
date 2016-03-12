@@ -191,6 +191,21 @@ import org.xml.sax.SAXException;
 public class Samples {
 
     /**
+     * Constructor
+     */
+    public Samples() {
+        this.sample = new ArrayList<>();
+    }
+
+    /**
+     * Constructor supplying list of individual samples
+     * @param sampleList 
+     */
+    public Samples(List<Sample> sampleList) {
+        this.sample = sampleList;
+    }
+
+    /**
      * Deserializes XML response to query for IGSN sample metadata from
      * GeoSamples.org, using development version 3 of service.
      *

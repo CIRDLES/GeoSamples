@@ -32,10 +32,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.ssl.SSLContextBuilder;
 
-/**
- *
- * @author James F. Bowring
- */
 public class HTTPClient {
 
     /**
