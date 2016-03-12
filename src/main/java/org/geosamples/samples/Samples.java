@@ -468,6 +468,12 @@ public class Samples {
     @XmlType(name = "", propOrder = {})
     public static class Sample {
 
+        /**
+         * Constructor
+         */
+        public Sample() {
+        }
+
         @XmlElement(name = "qrcode_img_src")
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String qrcodeIimgSrc;
