@@ -199,7 +199,7 @@ public class Samples {
 
     /**
      * Constructor supplying list of individual samples
-     * @param sample 
+     * @param sampleList 
      */
     public Samples(List<Sample> sampleList) {
         this.sample = sampleList;
