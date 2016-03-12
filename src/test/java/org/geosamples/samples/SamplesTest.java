@@ -17,10 +17,10 @@ package org.geosamples.samples;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -49,6 +49,7 @@ public class SamplesTest {
 
     /**
      * Test of deserializeProductionSesar3IGSN method, of class Samples.
+     * @throws java.lang.Exception
      */
     @Test
     public void testDeserializeProductionSesar3IGSN() throws Exception {
@@ -61,6 +62,7 @@ public class SamplesTest {
 
     /**
      * Test of deserializeProductionSesar2IGSN method, of class Samples.
+     * @throws java.lang.Exception
      */
     @Test
     public void testDeserializeProductionSesar2IGSN() throws Exception {
@@ -73,6 +75,7 @@ public class SamplesTest {
 
     /**
      * Test of deserializeTestIGSN method, of class Samples.
+     * @throws java.lang.Exception
      */
     @Test
     public void testDeserializeTestIGSN() throws Exception {
