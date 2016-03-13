@@ -379,6 +379,11 @@ public class Samples {
         isValid = isValid && (sample.getSampleType()!= null);
         isValid = isValid && (sample.getName() != null);
         isValid = isValid && (sample.getMaterial() != null);
+        // these fields must be empty
+        isValid = isValid && (sample.getQrcodeIimgSrc() == null);
+        isValid = isValid && (sample.getParents() == null);
+        isValid = isValid && (sample.getSiblings()== null);
+        isValid = isValid && (sample.getChildren()== null);
         
         return isValid;
     }
