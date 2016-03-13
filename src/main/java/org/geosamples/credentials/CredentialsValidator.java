@@ -40,63 +40,92 @@ import org.xml.sax.SAXException;
 
 public class CredentialsValidator {
 
+    private CredentialsValidator() {
+    }
+
     /**
-     * Validates user credentials for use with GeoPass from SESAR using production service.
-     * @see <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR credential POST API</a> 
-     * @param userName
-     * @param password
+     * Validates user credentials for use with GeoPass from SESAR using
+     * <a href="http://app.geosamples.org/webservices/credentials_service.php">Production Service</a>. 
+     * Only one user_code will be returned in the ArrayList.
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR
+     * credential POST API</a>
+     * @param userName =
+     * <a href="https://geopass.iedadata.org/josso/">GeoPass</a> username
+     * @param password =
+     * <a href="https://geopass.iedadata.org/josso/">GeoPass</a> password
      * @return ArrayList of user codes for this user
      * @throws IOException
      * @throws ParserConfigurationException
      * @throws SAXException
      * @throws NoSuchAlgorithmException
      * @throws KeyStoreException
-     * @throws KeyManagementException 
+     * @throws KeyManagementException
      */
-    public static ArrayList<String>  validateUserCredentialsProductionService(String userName, String password)
-            throws IOException, ParserConfigurationException, SAXException,NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+    public static ArrayList<String> validateUserCredentialsProductionService(String userName, String password)
+            throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         return validateUserCredentials(userName, password, "http://app.geosamples.org/webservices/credentials_service.php");
     }
-    
+
     /**
-     * Validates user credentials for use with GeoPass from SESAR using Development Service 1.
-     * @see <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR credential POST API</a> 
-     * @param userName
-     * @param password
+     * Validates user credentials for use with GeoPass from SESAR using
+     * <a href="https://sesar3.geoinfogeochem.org/webservices/credentials_service.php">Development Service 1</a>. 
+     * Only one user_code will be returned in the ArrayList.
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR
+     * credential POST API</a>
+     * @param userName =
+     * <a href="https://geopass.iedadata.org/josso/">GeoPass</a> username
+     * @param password =
+     * <a href="https://geopass.iedadata.org/josso/">GeoPass</a> password
      * @return ArrayList of user codes for this user
      * @throws IOException
      * @throws ParserConfigurationException
      * @throws SAXException
      * @throws NoSuchAlgorithmException
      * @throws KeyStoreException
-     * @throws KeyManagementException 
+     * @throws KeyManagementException
      */
-    public static ArrayList<String>  validateUserCredentialsDevelopmentService1(String userName, String password)
-            throws IOException, ParserConfigurationException, SAXException,NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+    public static ArrayList<String> validateUserCredentialsDevelopmentService1(String userName, String password)
+            throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         return validateUserCredentials(userName, password, "https://sesar3.geoinfogeochem.org/webservices/credentials_service.php");
     }
 
     /**
-     * Validates user credentials for use with GeoPass from SESAR using Development Service 2.
-     * @see <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR credential POST API</a> 
-     * @param userName
-     * @param password
+     * Validates user credentials for use with GeoPass from SESAR using
+     * <a href="https://sesar3.geoinfogeochem.org/webservices/credentials_service_v2.php">Development Service 2</a>. 
+     * ArrayList first element will be requestor's user code (if any) followed by all accessible user codes,
+     * which are those does whose owners have given permissions to the requestor.  Future versions will
+     * provide these permissions to caller.
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR
+     * credential POST API</a>
+     * @param userName =
+     * <a href="https://geopass.iedadata.org/josso/">GeoPass</a> username
+     * @param password =
+     * <a href="https://geopass.iedadata.org/josso/">GeoPass</a> password
      * @return ArrayList of user codes for this user
      * @throws IOException
      * @throws ParserConfigurationException
      * @throws SAXException
      * @throws NoSuchAlgorithmException
      * @throws KeyStoreException
-     * @throws KeyManagementException 
+     * @throws KeyManagementException
      */
-    public static ArrayList<String>  validateUserCredentialsDevelopmentService2(String userName, String password)
-            throws IOException, ParserConfigurationException, SAXException,NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "https://sesar3.geoinfogeochem.org/webservices/credentials_service.php");
+    public static ArrayList<String> validateUserCredentialsDevelopmentService2(String userName, String password)
+            throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        return validateUserCredentials(userName, password, "https://sesar3.geoinfogeochem.org/webservices/credentials_service_v2.php");
     }
 
     /**
      * Validates user credentials for use with GeoPass from SESAR.
-     * @see <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR credential POST API</a> 
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR
+     * credential POST API</a>
      * @param userName
      * @param password
      * @param credentialsService
@@ -106,10 +135,10 @@ public class CredentialsValidator {
      * @throws SAXException
      * @throws NoSuchAlgorithmException
      * @throws KeyStoreException
-     * @throws KeyManagementException 
+     * @throws KeyManagementException
      */
     private static ArrayList<String> validateUserCredentials(String userName, String password, String credentialsService)
-            throws IOException, ParserConfigurationException, SAXException,NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+            throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         ArrayList<String> userCodes = new ArrayList<>();
 
         Map<String, String> dataToPost = new HashMap<>();
