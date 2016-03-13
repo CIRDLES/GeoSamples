@@ -17,10 +17,10 @@ package org.geosamples.samples;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -58,6 +58,12 @@ public class SamplesTest {
         String expResult = "ODP000002";
         Samples result = Samples.deserializeProductionSesar3IGSN(igsn);
         assertEquals(expResult, result.getSample().get(0).getIgsn());
+
+        System.out.println("deserializeProductionSesar3IGSN");
+        igsn = "X";
+        expResult = null;
+        result = Samples.deserializeProductionSesar3IGSN(igsn);
+        assertEquals(expResult, result.getSample().get(0).getIgsn());
     }
 
     /**
@@ -70,6 +76,12 @@ public class SamplesTest {
         String igsn = "ODP000002";
         String expResult = "ODP000002";
         Samples result = Samples.deserializeProductionSesar2IGSN(igsn);
+        assertEquals(expResult, result.getSample().get(0).getIgsn());
+
+        System.out.println("deserializeProductionSesar2IGSN");
+        igsn = "X";
+        expResult = null;
+        result = Samples.deserializeProductionSesar2IGSN(igsn);
         assertEquals(expResult, result.getSample().get(0).getIgsn());
     }
 
@@ -91,6 +103,17 @@ public class SamplesTest {
             assert (true);
         }
 
+        System.out.println("deserializeTestIGSN");
+        igsn = "X";
+        expResult = null;
+        result = null;
+        try {
+            result = Samples.deserializeTestIGSN(igsn);
+            assertEquals(expResult, result.getSample().get(0).getIgsn());
+        } catch (javax.xml.bind.UnmarshalException jAXBException) {
+            // test server is often down for maintenance
+            assert (true);
+        }
     }
 
 }
