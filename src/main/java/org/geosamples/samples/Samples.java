@@ -368,7 +368,8 @@ public class Samples {
 
     /**
      * Validates Sample object by checking whether required fields are present, per
-     * GeoSamples March 2016.
+     * GeoSamples March 2016.  Required fields are userCode, sampleType, name, and material.
+     * Forbidden fields (produced by download service) are qrcodeImgSrc, parents, siblings, and children.
      * @param sample = Sample object
      * @return boolean
      */
@@ -380,7 +381,7 @@ public class Samples {
         isValid = isValid && (sample.getName() != null);
         isValid = isValid && (sample.getMaterial() != null);
         // these fields must be empty
-        isValid = isValid && (sample.getQrcodeIimgSrc() == null);
+        isValid = isValid && (sample.getQrcodeImgSrc() == null);
         isValid = isValid && (sample.getParents() == null);
         isValid = isValid && (sample.getSiblings()== null);
         isValid = isValid && (sample.getChildren()== null);
@@ -554,7 +555,7 @@ public class Samples {
 
         @XmlElement(name = "qrcode_img_src")
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String qrcodeIimgSrc;
+        protected String qrcodeImgSrc;
         @XmlElement(name = "user_code", required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String userCode;
@@ -722,23 +723,23 @@ public class Samples {
         protected Samples.Sample.Children children;
 
         /**
-         * Gets the value of the qrcodeIimgSrc property.
+         * Gets the value of the qrcodeImgSrc property.
          *
          * @return possible object is {@link String }
          *
          */
-        public String getQrcodeIimgSrc() {
-            return qrcodeIimgSrc;
+        public String getQrcodeImgSrc() {
+            return qrcodeImgSrc;
         }
 
         /**
-         * Sets the value of the qrcodeIimgSrc property.
+         * Sets the value of the qrcodeImgSrc property.
          *
          * @param qrcodeIimgSrc allowed object is {@link String }
          *
          */
-        public void setQrcodeIimgSrc(String qrcodeIimgSrc) {
-            this.qrcodeIimgSrc = qrcodeIimgSrc;
+        public void setQrcodeImgSrc(String qrcodeImgSrc) {
+            this.qrcodeImgSrc = qrcodeImgSrc;
         }
 
         /**
