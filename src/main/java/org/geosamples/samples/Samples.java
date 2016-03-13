@@ -25,6 +25,7 @@ package org.geosamples.samples;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.KeyManagementException;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -199,7 +201,8 @@ public class Samples {
 
     /**
      * Constructor supplying list of individual samples
-     * @param sampleList 
+     *
+     * @param sampleList
      */
     public Samples(List<Sample> sampleList) {
         this.sample = sampleList;
@@ -211,7 +214,7 @@ public class Samples {
      *
      * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
      * services</a>
-     * @param igsn  
+     * @param igsn
      * @return Samples
      * @throws IOException
      * @throws JAXBException
@@ -308,6 +311,76 @@ public class Samples {
         }
 
         return samples;
+    }
+
+    /**
+     * Marshalls a Samples object to an XML string.
+     *
+     * @param samples = Samples object
+     * @return XML document as String
+     * @throws JAXBException
+     */
+    public static String serializeSamplesToCompliantXML(Samples samples)
+            throws JAXBException {
+        return serializeSamplesToCompliantXMLWithPrettyPrintChoice(samples, false);
+    }
+
+    /**
+     * Marshalls a Samples object to an XML string formatted for human reading.
+     *
+     * @param samples = Samples object
+     * @return XML document as String
+     * @throws JAXBException
+     */
+    public static String serializeSamplesToCompliantXMLPrettyPrint(Samples samples)
+            throws JAXBException {
+        return serializeSamplesToCompliantXMLWithPrettyPrintChoice(samples, true);
+    }
+
+    /**
+     * Marshalls a Samples object to an XML string.
+     *
+     * @param samples = Samples object
+     * @param prettyPrint = boolean
+     * @return XML document as String
+     * @throws JAXBException
+     */
+    private static String serializeSamplesToCompliantXMLWithPrettyPrintChoice(Samples samples, boolean prettyPrint)
+            throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(Samples.class);
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, prettyPrint);
+
+        final StringWriter stringWriter = new StringWriter();
+        marshaller.marshal(samples, stringWriter);
+
+        String xmlOutput = stringWriter.toString();
+
+        // customize header to conform to geosamples requirements
+        String compliantHeader = "<samples xmlns=\"http://app.geosamples.org\" \n"
+                + "           xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n"
+                + "           xsi:schemaLocation=\"http://app.geosamples.org\n"
+                + "                                http://app.geosamples.org/samplev2.xsd \">";
+
+        String compliantXmlOutput = xmlOutput.replace("<samples>", compliantHeader);
+        return compliantXmlOutput;
+    }
+
+    /**
+     * Validates Sample object by checking whether required fields are present, per
+     * GeoSamples March 2016.
+     * @param sample = Sample object
+     * @return boolean
+     */
+    public static boolean validateSampleForUpload(Sample sample){
+        boolean isValid = true;
+        
+        isValid = isValid && (sample.getUserCode() != null);
+        isValid = isValid && (sample.getSampleType()!= null);
+        isValid = isValid && (sample.getName() != null);
+        isValid = isValid && (sample.getMaterial() != null);
+        
+        return isValid;
     }
 
     @XmlElement(required = true)
@@ -654,12 +727,12 @@ public class Samples {
         }
 
         /**
-         * Sets the value of the barcodeIimgSrc property.
+         * Sets the value of the qrcodeIimgSrc property.
          *
          * @param qrcodeIimgSrc allowed object is {@link String }
          *
          */
-        public void setBarcodeIimgSrc(String qrcodeIimgSrc) {
+        public void setQrcodeIimgSrc(String qrcodeIimgSrc) {
             this.qrcodeIimgSrc = qrcodeIimgSrc;
         }
 
