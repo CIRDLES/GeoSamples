@@ -1,5 +1,6 @@
-# Maven
-target
+# Gradle
+build/
+.gradle/
 
 # Netbeans
 nbactions.xml
