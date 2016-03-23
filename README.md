@@ -29,6 +29,6 @@ and this reference to GeoSamples:
       <dependency>
         <groupId>com.github.cirdles</groupId>
         <artifactId>GeoSamples</artifactId>
-        <version>v.1.0.4</version>
+        <version>v.1.0.5</version>
       </dependency>
 ```
