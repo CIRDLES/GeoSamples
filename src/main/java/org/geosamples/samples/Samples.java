@@ -50,6 +50,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.xml.sax.SAXException;
@@ -216,6 +217,7 @@ public class Samples {
      * services</a>
      * @param igsn
      * @return Samples
+     * @throws org.apache.http.conn.HttpHostConnectException
      * @throws IOException
      * @throws JAXBException
      * @throws javax.xml.parsers.ParserConfigurationException
@@ -225,7 +227,7 @@ public class Samples {
      * @throws java.security.KeyManagementException
      */
     public static Samples deserializeProductionSesar3IGSN(String igsn)
-            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String productionService3 = "https://sesar3.geoinfogeochem.org/sample/igsn/";
         return deserializeIGSN(productionService3 + igsn);
     }
@@ -238,6 +240,7 @@ public class Samples {
      * services</a>
      * @param igsn
      * @return Samples
+     * @throws org.apache.http.conn.HttpHostConnectException
      * @throws IOException
      * @throws JAXBException
      * @throws javax.xml.parsers.ParserConfigurationException
@@ -247,7 +250,7 @@ public class Samples {
      * @throws java.security.KeyManagementException
      */
     public static Samples deserializeProductionSesar2IGSN(String igsn)
-            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String productionService2 = "http://app.geosamples.org/sample/igsn/";
         return deserializeIGSN(productionService2 + igsn);
     }
@@ -260,6 +263,7 @@ public class Samples {
      * services</a>
      * @param igsn
      * @return Samples
+     * @throws org.apache.http.conn.HttpHostConnectException
      * @throws IOException
      * @throws JAXBException
      * @throws javax.xml.parsers.ParserConfigurationException
@@ -269,7 +273,7 @@ public class Samples {
      * @throws java.security.KeyManagementException
      */
     public static Samples deserializeTestIGSN(String igsn)
-            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String testService = "http://sesardev.geoinfogeochem.org/sample/igsn/";
         return deserializeIGSN(testService + igsn);
     }
@@ -280,6 +284,7 @@ public class Samples {
      *
      * @param serviceWithIgsn
      * @return Samples
+     * @throws org.apache.http.conn.HttpHostConnectException
      * @throws IOException
      * @throws JAXBException
      * @throws javax.xml.parsers.ParserConfigurationException
@@ -289,7 +294,7 @@ public class Samples {
      * @throws java.security.KeyManagementException
      */
     private static Samples deserializeIGSN(String serviceWithIgsn)
-            throws IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         Samples samples = null;
 
         CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
@@ -367,25 +372,27 @@ public class Samples {
     }
 
     /**
-     * Validates Sample object by checking whether required fields are present, per
-     * GeoSamples March 2016.  Required fields are userCode, sampleType, name, and material.
-     * Forbidden fields (produced by download service) are qrcodeImgSrc, parents, siblings, and children.
+     * Validates Sample object by checking whether required fields are present,
+     * per GeoSamples March 2016. Required fields are userCode, sampleType,
+     * name, and material. Forbidden fields (produced by download service) are
+     * qrcodeImgSrc, parents, siblings, and children.
+     *
      * @param sample = Sample object
      * @return boolean
      */
-    public static boolean validateSampleForUpload(Sample sample){
+    public static boolean validateSampleForUpload(Sample sample) {
         boolean isValid = true;
-        
+
         isValid = isValid && (sample.getUserCode() != null);
-        isValid = isValid && (sample.getSampleType()!= null);
+        isValid = isValid && (sample.getSampleType() != null);
         isValid = isValid && (sample.getName() != null);
         isValid = isValid && (sample.getMaterial() != null);
         // these fields must be empty
         isValid = isValid && (sample.getQrcodeImgSrc() == null);
         isValid = isValid && (sample.getParents() == null);
-        isValid = isValid && (sample.getSiblings()== null);
-        isValid = isValid && (sample.getChildren()== null);
-        
+        isValid = isValid && (sample.getSiblings() == null);
+        isValid = isValid && (sample.getChildren() == null);
+
         return isValid;
     }
 
