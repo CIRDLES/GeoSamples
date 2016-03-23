@@ -65,7 +65,7 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsProductionService(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "http://app.geosamples.org/webservices/credentials_service.php");
+        return validateUserCredentials(userName, password, "https://app.geosamples.org/webservices/credentials_service.php");
     }
 
     /**
