@@ -48,10 +48,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.ParserConfigurationException;
 import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.xml.sax.SAXException;
 
@@ -251,7 +255,7 @@ public class Samples {
      */
     public static Samples deserializeProductionSesar2IGSN(String igsn)
             throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        String productionService2 = "http://app.geosamples.org/sample/igsn/";
+        String productionService2 = "https://app.geosamples.org/sample/igsn/";
         return deserializeIGSN(productionService2 + igsn);
     }
 
@@ -274,7 +278,7 @@ public class Samples {
      */
     public static Samples deserializeTestIGSN(String igsn)
             throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        String testService = "http://sesardev.geoinfogeochem.org/sample/igsn/";
+        String testService = "https://sesardev.geoinfogeochem.org/sample/igsn/";
         return deserializeIGSN(testService + igsn);
     }
 
@@ -384,9 +388,9 @@ public class Samples {
         boolean isValid = true;
 
         isValid = isValid && (sample.getUserCode() != null);
-        isValid = isValid && (sample.getSampleType() != null);
+        isValid = isValid && checkThatValueIsLegal(SampleType.class, sample.getSampleType());
         isValid = isValid && (sample.getName() != null);
-        isValid = isValid && (sample.getMaterial() != null);
+        isValid = isValid && checkThatValueIsLegal(Material.class, sample.getMaterial());
         // these fields must be empty
         isValid = isValid && (sample.getQrcodeImgSrc() == null);
         isValid = isValid && (sample.getParents() == null);
@@ -394,6 +398,19 @@ public class Samples {
         isValid = isValid && (sample.getChildren() == null);
 
         return isValid;
+    }
+
+    private static <T extends Enum<T>> boolean checkThatValueIsLegal(Class<T> enumType, String name) {
+        boolean isLegal = (name != null);
+        if (isLegal) {
+            try {
+                Enum.valueOf(enumType, name.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                isLegal = false;
+            }
+        }
+
+        return isLegal;
     }
 
     @XmlElement(required = true)
@@ -2401,6 +2418,64 @@ public class Samples {
                 return this.samples;
             }
 
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Samples mySamples = new Samples();
+        Sample mySample = new Sample();
+        mySamples.getSample().add(mySample);
+
+        mySample.setUserCode("JFB");
+        mySample.setIgsn("JFB000011");
+        mySample.setName("jimnine");
+        mySample.setSampleType(SampleType.CORE.value());//NOTE: CASE MATTERS !!
+        mySample.setMaterial("Rock");
+
+        boolean isLegal = validateSampleForUpload(mySample);
+        
+        String myPrettySample = "";
+        try {
+            myPrettySample = serializeSamplesToCompliantXML(mySamples);
+        } catch (JAXBException jAXBException) {
+        }
+
+        CloseableHttpClient httpClient = null;
+        try {
+            httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
+        } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException noSuchAlgorithmException) {
+        }
+
+        HttpPost httpPost = new HttpPost("http://sesardev.geoinfogeochem.org/webservices/upload.php");
+        List<NameValuePair> nvps = new ArrayList<>();
+        nvps.add(new BasicNameValuePair("username", "bowring@gmail.com"));
+        nvps.add(new BasicNameValuePair("password", "redux00"));
+        nvps.add(new BasicNameValuePair("content", myPrettySample));
+
+        CloseableHttpResponse response2 = null;
+
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+            response2 = httpClient.execute(httpPost);
+
+            System.out.println(response2.getStatusLine());
+            HttpEntity entity2 = response2.getEntity();
+            // do something useful with the response body
+            // and ensure it is fully consumed
+            EntityUtils.consume(entity2);
+        } catch (IOException iOException) {
+        }
+
+        Samples gotSamples = null;
+        try {
+            gotSamples = deserializeTestIGSN("JFB000011");
+        } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
+        }
+
+        try {
+            System.out.println(serializeSamplesToCompliantXMLPrettyPrint(gotSamples));
+        } catch (JAXBException jAXBException) {
         }
 
     }
