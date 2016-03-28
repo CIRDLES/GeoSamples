@@ -33,6 +33,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -373,6 +375,14 @@ public class Samples {
 
         String compliantXmlOutput = xmlOutput.replace("<samples>", compliantHeader);
         return compliantXmlOutput;
+    }
+
+    public static boolean validateSamplesForUpload(Samples samples) {
+        boolean areValid = true;
+        for (Sample sample : samples.getSample()) {
+            areValid = areValid && validateSampleForUpload(sample);
+        }
+        return areValid;
     }
 
     /**
@@ -759,7 +769,7 @@ public class Samples {
         /**
          * Sets the value of the qrcodeImgSrc property.
          *
-         * @param qrcodeIimgSrc allowed object is {@link String }
+         * @param qrcodeImgSrc allowed object is {@link String }
          *
          */
         public void setQrcodeImgSrc(String qrcodeImgSrc) {
@@ -2422,54 +2432,76 @@ public class Samples {
 
     }
 
+    public static boolean uploadSampleMetaDataToProductionService(String username, String password, Samples samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        boolean success = uploadSampleMetaDataToSesar(username, password, samples, "https://app.geosamples.org/webservices/upload.php");
+        return success;
+    }
+
+    public static boolean uploadSampleMetaDataToTestService(String username, String password, Samples samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        boolean success = uploadSampleMetaDataToSesar(username, password, samples, "http://sesardev.geoinfogeochem.org/webservices/upload.php");
+        return success;
+    }
+
+    private static boolean uploadSampleMetaDataToSesar(String username, String password, Samples samples, String serviceURL)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        boolean areValid = validateSamplesForUpload(samples);
+        boolean success = false;
+
+        if (areValid) {
+            // prepare shipment
+            String serialSamples = serializeSamplesToCompliantXML(samples);
+            List<NameValuePair> nvps = new ArrayList<>();
+            nvps.add(new BasicNameValuePair("username", username));
+            nvps.add(new BasicNameValuePair("password", password));
+            nvps.add(new BasicNameValuePair("content", serialSamples));
+
+            // setup service
+            CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
+            HttpPost httpPost = new HttpPost(serviceURL);
+
+            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+            CloseableHttpResponse response = httpClient.execute(httpPost);
+
+            success = response.getStatusLine().getStatusCode() == 200;
+
+            HttpEntity entity = response.getEntity();
+            // could process message here
+
+            // and ensure it is fully consumed
+            EntityUtils.consume(entity);
+        }
+
+        return success;
+    }
+
     public static void main(String[] args) {
         Samples mySamples = new Samples();
         Sample mySample = new Sample();
         mySamples.getSample().add(mySample);
 
         mySample.setUserCode("JFB");
-        mySample.setIgsn("JFB000011");
-        mySample.setName("jimnine");
-        mySample.setSampleType(SampleType.CORE.value());//NOTE: CASE MATTERS !!
-        mySample.setMaterial("Rock");
+        mySample.setIgsn("JFB000018");
+        mySample.setName("yes");
+        mySample.setSampleType(SampleType.CORE.value());
+        mySample.setMaterial(Material.ROCK.value());
+        Classification myRockClass = new Classification();
+        myRockClass.setRock(new Classification.Rock());
+        myRockClass.getRock().setSedimentary(new Classification.Rock.Sedimentary());
+        myRockClass.getRock().getSedimentary().setSedimentaryType(SedimentaryDetails.EVAPORITE);
+        mySample.setClassification(myRockClass);
 
-        boolean isLegal = validateSampleForUpload(mySample);
-        
-        String myPrettySample = "";
+        boolean success = false;
         try {
-            myPrettySample = serializeSamplesToCompliantXML(mySamples);
-        } catch (JAXBException jAXBException) {
-        }
-
-        CloseableHttpClient httpClient = null;
-        try {
-            httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
-        } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException noSuchAlgorithmException) {
-        }
-
-        HttpPost httpPost = new HttpPost("http://sesardev.geoinfogeochem.org/webservices/upload.php");
-        List<NameValuePair> nvps = new ArrayList<>();
-        nvps.add(new BasicNameValuePair("username", "bowring@gmail.com"));
-        nvps.add(new BasicNameValuePair("password", "redux00"));
-        nvps.add(new BasicNameValuePair("content", myPrettySample));
-
-        CloseableHttpResponse response2 = null;
-
-        try {
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-            response2 = httpClient.execute(httpPost);
-
-            System.out.println(response2.getStatusLine());
-            HttpEntity entity2 = response2.getEntity();
-            // do something useful with the response body
-            // and ensure it is fully consumed
-            EntityUtils.consume(entity2);
-        } catch (IOException iOException) {
+            success = uploadSampleMetaDataToTestService("bowring@gmail.com", "redux00", mySamples);
+        } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException ex) {
+            Logger.getLogger(Samples.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Samples gotSamples = null;
         try {
-            gotSamples = deserializeTestIGSN("JFB000011");
+            gotSamples = deserializeTestIGSN("JFB000018");
         } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
         }
 
@@ -2479,5 +2511,4 @@ public class Samples {
         }
 
     }
-
 }
