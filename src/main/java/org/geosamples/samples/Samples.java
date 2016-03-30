@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -49,7 +50,9 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.ParserConfigurationException;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -59,6 +62,8 @@ import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.geosamples.XMLDocumentInterface;
+import org.geosamples.results.Results;
 import org.xml.sax.SAXException;
 
 /**
@@ -197,7 +202,7 @@ import org.xml.sax.SAXException;
     "sample"
 })
 @XmlRootElement(name = "samples")
-public class Samples {
+public class Samples implements XMLDocumentInterface {
 
     /**
      * Constructor
@@ -217,7 +222,9 @@ public class Samples {
 
     /**
      * Deserializes XML response to query for IGSN sample metadata from
-     * GeoSamples.org, using development version 3 of service.
+     * GeoSamples.org, using the
+     * <a href="https://sesar3.geosamples.org/sample/igsn/">Test Features
+     * Service</a>.
      *
      * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
      * services</a>
@@ -232,15 +239,17 @@ public class Samples {
      * @throws java.security.KeyStoreException
      * @throws java.security.KeyManagementException
      */
-    public static Samples deserializeProductionSesar3IGSN(String igsn)
+    public static XMLDocumentInterface downloadSampleMetadataFromTestFeaturesServiceSesarIGSN(String igsn)
             throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        String productionService3 = "https://sesar3.geoinfogeochem.org/sample/igsn/";
-        return deserializeIGSN(productionService3 + igsn);
+        String productionService3 = "https://sesar3.geosamples.org/sample/igsn/";
+        return downloadSampleMetadataFromSesarIGSNWithNoCredentials(productionService3 + igsn);
     }
 
     /**
      * Deserializes XML response to query for IGSN sample metadata from
-     * GeoSamples.org, using production version 2 of service.
+     * GeoSamples.org, using the
+     * <a href="https://sesardev.geosamples.org/sample/igsn/">Production
+     * Service</a>.
      *
      * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
      * services</a>
@@ -255,15 +264,16 @@ public class Samples {
      * @throws java.security.KeyStoreException
      * @throws java.security.KeyManagementException
      */
-    public static Samples deserializeProductionSesar2IGSN(String igsn)
+    public static XMLDocumentInterface downloadSampleMetadataFromProductionSesarIGSN(String igsn)
             throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String productionService2 = "https://app.geosamples.org/sample/igsn/";
-        return deserializeIGSN(productionService2 + igsn);
+        return downloadSampleMetadataFromSesarIGSNWithNoCredentials(productionService2 + igsn);
     }
 
     /**
      * Deserializes XML response to query for IGSN sample metadata from
-     * GeoSamples.org, using the test service.
+     * GeoSamples.org, using the
+     * <a href="https://sesardev.geosamples.org/sample/igsn/">Test Service</a>.
      *
      * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
      * services</a>
@@ -278,17 +288,22 @@ public class Samples {
      * @throws java.security.KeyStoreException
      * @throws java.security.KeyManagementException
      */
-    public static Samples deserializeTestIGSN(String igsn)
+    public static XMLDocumentInterface downloadSampleMetadataFromTestSesarIGSN(String igsn)
             throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        String testService = "https://sesardev.geoinfogeochem.org/sample/igsn/";
-        return deserializeIGSN(testService + igsn);
+        String testService = "https://sesardev.geosamples.org/sample/igsn/";
+        return downloadSampleMetadataFromSesarIGSNWithNoCredentials(testService + igsn);
     }
 
     /**
      * Deserializes XML response to query for IGSN sample metadata from
-     * GeoSamples.org, using the specified serviceWithIgsn string.
+     * GeoSamples.org, with username and passwordusing the
+     * <a href="https://sesardev.geosamples.org/sample/igsn/">Test Service</a>.
      *
-     * @param serviceWithIgsn
+     * @see <a href="http://www.iedadata.org/services/sesar_api">SESAR REST web
+     * services</a>
+     * @param igsn
+     * @param username
+     * @param password
      * @return Samples
      * @throws org.apache.http.conn.HttpHostConnectException
      * @throws IOException
@@ -299,14 +314,59 @@ public class Samples {
      * @throws java.security.KeyStoreException
      * @throws java.security.KeyManagementException
      */
-    private static Samples deserializeIGSN(String serviceWithIgsn)
+    public static XMLDocumentInterface downloadSampleMetadataFromTestSesarIGSN(String igsn, String username, String password)
             throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        Samples samples = null;
+        String testService = "https://sesardev.geosamples.org/sample/igsn/";
+        return downloadSampleMetadataFromSesarIGSNWithCredentials(testService + igsn, username, password);
+    }
+
+    private static XMLDocumentInterface downloadSampleMetadataFromSesarIGSNWithNoCredentials(String serviceUrlWithData)
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceUrlWithData);
+        httpGet.setHeader("accept:", "application/xml");
+
+        XMLDocumentInterface responseDocument = downloadSampleMetadataFromSesarIGSN(serviceUrlWithData, httpGet);
+        return responseDocument;
+    }
+
+    private static XMLDocumentInterface downloadSampleMetadataFromSesarIGSNWithCredentials(String serviceUrlWithData, String username, String password)
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceUrlWithData);
+        httpGet.setHeader("accept:", "application/xml");
+
+        // thanks to http://www.baeldung.com/httpclient-4-basic-authentication
+        String auth = username + ":" + password;
+        byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("ISO-8859-1")));
+        String authHeader = "Basic " + new String(encodedAuth);
+        httpGet.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
+
+        XMLDocumentInterface responseDocument = downloadSampleMetadataFromSesarIGSN(serviceUrlWithData, httpGet);
+        return responseDocument;
+    }
+
+    /**
+     * Deserializes XML response to query for IGSN sample metadata from
+     * GeoSamples.org, using the specified serviceUrlWithData string.
+     *
+     * @param serviceUrlWithData
+     * @return Samples
+     * @throws org.apache.http.conn.HttpHostConnectException
+     * @throws IOException
+     * @throws JAXBException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws org.xml.sax.SAXException
+     * @throws java.security.KeyStoreException
+     * @throws java.security.KeyManagementException
+     */
+    private static XMLDocumentInterface downloadSampleMetadataFromSesarIGSN(String serviceUrlWithData, HttpGet httpGet)
+            throws HttpHostConnectException, IOException, JAXBException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+//
+//        org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceUrlWithData);
+//        httpGet.setHeader("accept:", "application/xml");
 
         CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
-
-        org.apache.http.client.methods.HttpGet httpGet = new HttpGet(serviceWithIgsn);
-        httpGet.setHeader("accept:", "application/xml");
+        XMLDocumentInterface samples = null;
 
         try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
             HttpEntity myEntity = httpResponse.getEntity();
@@ -314,7 +374,7 @@ public class Samples {
 
             JAXBContext jaxbContext = JAXBContext.newInstance(Samples.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            samples = (Samples) jaxbUnmarshaller.unmarshal(response);
+            samples = (XMLDocumentInterface) jaxbUnmarshaller.unmarshal(response);
             // ensure it is fully consumed
             EntityUtils.consume(myEntity);
 
@@ -331,7 +391,7 @@ public class Samples {
      * @return XML document as String
      * @throws JAXBException
      */
-    public static String serializeSamplesToCompliantXML(Samples samples)
+    public static String serializeSamplesToCompliantXML(XMLDocumentInterface samples)
             throws JAXBException {
         return serializeSamplesToCompliantXMLWithPrettyPrintChoice(samples, false);
     }
@@ -343,7 +403,7 @@ public class Samples {
      * @return XML document as String
      * @throws JAXBException
      */
-    public static String serializeSamplesToCompliantXMLPrettyPrint(Samples samples)
+    public static String serializeSamplesToCompliantXMLPrettyPrint(XMLDocumentInterface samples)
             throws JAXBException {
         return serializeSamplesToCompliantXMLWithPrettyPrintChoice(samples, true);
     }
@@ -356,7 +416,7 @@ public class Samples {
      * @return XML document as String
      * @throws JAXBException
      */
-    private static String serializeSamplesToCompliantXMLWithPrettyPrintChoice(Samples samples, boolean prettyPrint)
+    private static String serializeSamplesToCompliantXMLWithPrettyPrintChoice(XMLDocumentInterface samples, boolean prettyPrint)
             throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(Samples.class);
         Marshaller marshaller = jaxbContext.createMarshaller();
@@ -389,7 +449,7 @@ public class Samples {
      * Validates Sample object by checking whether required fields are present,
      * per GeoSamples March 2016. Required fields are userCode, sampleType,
      * name, and material. Forbidden fields (produced by download service) are
-     * qrcodeImgSrc, parents, siblings, and children.
+     * qrcodeImgSrc, url, parents, siblings, and children.
      *
      * @param sample = Sample object
      * @return boolean
@@ -403,6 +463,7 @@ public class Samples {
         isValid = isValid && checkThatValueIsLegal(Material.class, sample.getMaterial());
         // these fields must be empty
         isValid = isValid && (sample.getQrcodeImgSrc() == null);
+        isValid = isValid && (sample.getUrl() == null);
         isValid = isValid && (sample.getParents() == null);
         isValid = isValid && (sample.getSiblings() == null);
         isValid = isValid && (sample.getChildren() == null);
@@ -421,6 +482,99 @@ public class Samples {
         }
 
         return isLegal;
+    }
+
+    /**
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#SESARRESTWebServiceAPIDocumentation-1.Sampleregistrationwebservice">SESAR
+     * REST web services</a>
+     * @param username
+     * @param password
+     * @param samples
+     * @return
+     * @throws JAXBException
+     * @throws NoSuchAlgorithmException
+     * @throws KeyStoreException
+     * @throws KeyManagementException
+     * @throws IOException
+     */
+    public static XMLDocumentInterface registerSampleMetaDataWithSesarProductionService(String username, String password, XMLDocumentInterface samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        XMLDocumentInterface success = registerSampleMetaDataWithSesar(username, password, samples, "https://app.geosamples.org/webservices/upload.php");
+        return success;
+    }
+
+    /**
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#SESARRESTWebServiceAPIDocumentation-1.Sampleregistrationwebservice">SESAR
+     * REST web services</a>
+     * @param username
+     * @param password
+     * @param samples
+     * @return
+     * @throws JAXBException
+     * @throws NoSuchAlgorithmException
+     * @throws KeyStoreException
+     * @throws KeyManagementException
+     * @throws IOException
+     */
+    public static XMLDocumentInterface registerSampleMetaDataWithSesarTestService(String username, String password, XMLDocumentInterface samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        XMLDocumentInterface success = registerSampleMetaDataWithSesar(username, password, samples, "https://sesardev.geosamples.org/webservices/upload.php");
+        return success;
+    }
+
+    /**
+     *
+     * @see
+     * <a href="http://www.iedadata.org/services/sesar_api#SESARRESTWebServiceAPIDocumentation-1.Sampleregistrationwebservice">SESAR
+     * REST web services</a>
+     * @param username
+     * @param password
+     * @param samples
+     * @param serviceURL
+     * @return
+     * @throws JAXBException
+     * @throws NoSuchAlgorithmException
+     * @throws KeyStoreException
+     * @throws KeyManagementException
+     * @throws IOException
+     */
+    private static XMLDocumentInterface registerSampleMetaDataWithSesar(String username, String password, XMLDocumentInterface samples, String serviceURL)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        boolean areValid = validateSamplesForUpload((Samples) samples);
+        XMLDocumentInterface success = new Results();
+
+        if (areValid) {
+            // prepare shipment
+            String serialSamples = serializeSamplesToCompliantXML(samples);
+            List<NameValuePair> nvps = new ArrayList<>();
+            nvps.add(new BasicNameValuePair("username", username));
+            nvps.add(new BasicNameValuePair("password", password));
+            nvps.add(new BasicNameValuePair("content", serialSamples));
+
+            // setup service
+            CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
+            HttpPost httpPost = new HttpPost(serviceURL);
+
+            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+            CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
+
+            //success = httpResponse.getStatusLine().getStatusCode() == 200;
+            HttpEntity myEntity = httpResponse.getEntity();
+            InputStream response = myEntity.getContent();
+
+            JAXBContext jaxbContext = JAXBContext.newInstance(Results.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            success = (XMLDocumentInterface) jaxbUnmarshaller.unmarshal(response);
+
+            // and ensure it is fully consumed
+            EntityUtils.consume(myEntity);
+        }
+
+        return success;
     }
 
     @XmlElement(required = true)
@@ -587,23 +741,20 @@ public class Samples {
         public Sample() {
         }
 
-        @XmlElement(name = "qrcode_img_src")
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String qrcodeImgSrc;
         @XmlElement(name = "user_code", required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String userCode;
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        protected String igsn;
+        @XmlElement(required = true)
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        protected String name;
         @XmlElement(name = "sample_type", required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String sampleType;
         @XmlElement(required = true)
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String name;
-        @XmlElement(required = true)
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String material;
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String igsn;
         @XmlElement(name = "parent_igsn")
         @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
         protected String parentIgsn;
@@ -749,32 +900,30 @@ public class Samples {
         protected Samples.Sample.SampleOtherNames sampleOtherNames;
         @XmlElement(name = "external_urls")
         protected Samples.Sample.ExternalUrls externalUrls;
+        // added for download version of schema
         @XmlElement(name = "parents")
         protected Samples.Sample.Parents parents;
+        // added for download version of schema
         @XmlElement(name = "siblings")
         protected Samples.Sample.Siblings siblings;
+        // added for download version of schema
         @XmlElement(name = "children")
         protected Samples.Sample.Children children;
-
-        /**
-         * Gets the value of the qrcodeImgSrc property.
-         *
-         * @return possible object is {@link String }
-         *
-         */
-        public String getQrcodeImgSrc() {
-            return qrcodeImgSrc;
-        }
-
-        /**
-         * Sets the value of the qrcodeImgSrc property.
-         *
-         * @param qrcodeImgSrc allowed object is {@link String }
-         *
-         */
-        public void setQrcodeImgSrc(String qrcodeImgSrc) {
-            this.qrcodeImgSrc = qrcodeImgSrc;
-        }
+        // added for download version of schema
+        @XmlElement(name = "qrcode_img_src")
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        protected String qrcodeImgSrc;
+        // added for download version of schema
+        @XmlElement(name = "url")
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        protected String url;
+        // added for download version of schema
+        @XmlElement(name = "status")
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        protected String status;
+        @XmlElement(name = "error")
+        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        protected String error;
 
         /**
          * Gets the value of the userCode property.
@@ -2118,6 +2267,80 @@ public class Samples {
         }
 
         /**
+         * Gets the value of the qrcodeImgSrc property.
+         *
+         * @return possible object is {@link String }
+         *
+         */
+        public String getQrcodeImgSrc() {
+            return qrcodeImgSrc;
+        }
+
+        /**
+         * Sets the value of the qrcodeImgSrc property.
+         *
+         * @param qrcodeImgSrc allowed object is {@link String }
+         *
+         */
+        public void setQrcodeImgSrc(String qrcodeImgSrc) {
+            this.qrcodeImgSrc = qrcodeImgSrc;
+        }
+
+        /**
+         * Gets the value of the url property.
+         *
+         * @return possible object is {@link String }
+         *
+         */
+        public String getUrl() {
+            return url;
+        }
+
+        /**
+         * Sets the value of the url property.
+         *
+         * @param url allowed object is {@link String }
+         *
+         */
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        /**
+         * Gets the value of the status property.
+         *
+         * @return possible object is {@link String }
+         *
+         */
+        public String getStatus() {
+            return status;
+        }
+
+        /**
+         * Sets the value of the status property.
+         *
+         * @param status allowed object is {@link String }
+         *
+         */
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        /**
+         * @return the error
+         */
+        public String getError() {
+            return error;
+        }
+
+        /**
+         * @param error the error to set
+         */
+        public void setError(String error) {
+            this.error = error;
+        }
+
+        /**
          * <p>
          * Java class for anonymous complex type.
          *
@@ -2432,57 +2655,13 @@ public class Samples {
 
     }
 
-    public static boolean uploadSampleMetaDataToProductionService(String username, String password, Samples samples)
-            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
-        boolean success = uploadSampleMetaDataToSesar(username, password, samples, "https://app.geosamples.org/webservices/upload.php");
-        return success;
-    }
-
-    public static boolean uploadSampleMetaDataToTestService(String username, String password, Samples samples)
-            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
-        boolean success = uploadSampleMetaDataToSesar(username, password, samples, "http://sesardev.geoinfogeochem.org/webservices/upload.php");
-        return success;
-    }
-
-    private static boolean uploadSampleMetaDataToSesar(String username, String password, Samples samples, String serviceURL)
-            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
-        boolean areValid = validateSamplesForUpload(samples);
-        boolean success = false;
-
-        if (areValid) {
-            // prepare shipment
-            String serialSamples = serializeSamplesToCompliantXML(samples);
-            List<NameValuePair> nvps = new ArrayList<>();
-            nvps.add(new BasicNameValuePair("username", username));
-            nvps.add(new BasicNameValuePair("password", password));
-            nvps.add(new BasicNameValuePair("content", serialSamples));
-
-            // setup service
-            CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
-            HttpPost httpPost = new HttpPost(serviceURL);
-
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-            CloseableHttpResponse response = httpClient.execute(httpPost);
-
-            success = response.getStatusLine().getStatusCode() == 200;
-
-            HttpEntity entity = response.getEntity();
-            // could process message here
-
-            // and ensure it is fully consumed
-            EntityUtils.consume(entity);
-        }
-
-        return success;
-    }
-
     public static void main(String[] args) {
-        Samples mySamples = new Samples();
+        XMLDocumentInterface mySamples = new Samples();
         Sample mySample = new Sample();
         mySamples.getSample().add(mySample);
 
         mySample.setUserCode("JFB");
-        mySample.setIgsn("JFB000018");
+        mySample.setIgsn("JFB000030");
         mySample.setName("yes");
         mySample.setSampleType(SampleType.CORE.value());
         mySample.setMaterial(Material.ROCK.value());
@@ -2492,16 +2671,17 @@ public class Samples {
         myRockClass.getRock().getSedimentary().setSedimentaryType(SedimentaryDetails.EVAPORITE);
         mySample.setClassification(myRockClass);
 
-        boolean success = false;
+        XMLDocumentInterface success = null;
         try {
-            success = uploadSampleMetaDataToTestService("bowring@gmail.com", "redux00", mySamples);
+            success = registerSampleMetaDataWithSesarTestService("bowring@gmail.com", "redux00", mySamples);
+            System.out.println("HELP");
         } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException ex) {
             Logger.getLogger(Samples.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Samples gotSamples = null;
+        XMLDocumentInterface gotSamples = null;
         try {
-            gotSamples = deserializeTestIGSN("JFB000018");
+            gotSamples = downloadSampleMetadataFromTestSesarIGSN("JFB000030");// this should be a results
         } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
         }
 
@@ -2510,5 +2690,15 @@ public class Samples {
         } catch (JAXBException jAXBException) {
         }
 
+        System.out.println("+++++++++++++++++++++++");
+        XMLDocumentInterface myList = null;
+        try {
+            myList = downloadSampleMetadataFromSesarIGSNWithNoCredentials("https://sesardev.geosamples.org/samples/user_code/JFB");
+        } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
+        }
+        try {
+            System.out.println(serializeSamplesToCompliantXMLPrettyPrint(myList));
+        } catch (JAXBException jAXBException) {
+        }
     }
 }

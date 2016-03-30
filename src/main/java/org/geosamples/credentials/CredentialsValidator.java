@@ -45,7 +45,7 @@ public class CredentialsValidator {
 
     /**
      * Validates user credentials for use with GeoPass from SESAR using
-     * <a href="http://app.geosamples.org/webservices/credentials_service.php">Production Service</a>. 
+     * <a href="https://app.geosamples.org/webservices/credentials_service.php">Production Service v.2</a>. 
      * Only one user_code will be returned in the ArrayList.
      *
      * @see
@@ -63,14 +63,14 @@ public class CredentialsValidator {
      * @throws KeyStoreException
      * @throws KeyManagementException
      */
-    public static ArrayList<String> validateUserCredentialsProductionService(String userName, String password)
+    public static ArrayList<String> validateUserCredentialsProductionServiceV2(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         return validateUserCredentials(userName, password, "https://app.geosamples.org/webservices/credentials_service.php");
     }
 
     /**
      * Validates user credentials for use with GeoPass from SESAR using
-     * <a href="https://sesar3.geoinfogeochem.org/webservices/credentials_service.php">Development Service 1</a>. 
+     * <a href="https://sesardev.geosamples.org/webservices/credentials_service.php">Development Service 1</a>. 
      * Only one user_code will be returned in the ArrayList.
      *
      * @see
@@ -90,12 +90,12 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsDevelopmentService1(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "https://sesar3.geoinfogeochem.org/webservices/credentials_service.php");
+        return validateUserCredentials(userName, password, "https://sesardev.geosamples.org/webservices/credentials_service.php");
     }
 
     /**
      * Validates user credentials for use with GeoPass from SESAR using
-     * <a href="https://sesar3.geoinfogeochem.org/webservices/credentials_service_v2.php">Development Service 2</a>. 
+     * <a href="https://sesar3.geosamples.org/webservices/credentials_service_v2.php">Development Service 2</a>. 
      * ArrayList first element will be requestor's user code (if any) followed by all accessible user codes,
      * which are those does whose owners have given permissions to the requestor.  Future versions will
      * provide these permissions to caller.
@@ -117,7 +117,7 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsDevelopmentService2(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "https://sesar3.geoinfogeochem.org/webservices/credentials_service_v2.php");
+        return validateUserCredentials(userName, password, "https://sesar3.geosamples.org/credentials_service_v2.php");
     }
 
     /**
