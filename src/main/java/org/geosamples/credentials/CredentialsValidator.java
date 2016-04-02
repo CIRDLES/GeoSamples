@@ -34,9 +34,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import static org.geosamples.Constants.GEOSAMPLES_PRODUCTION_SERVER;
+import static org.geosamples.Constants.GEOSAMPLES_TEST_FEATURES_SERVER;
+import static org.geosamples.Constants.GEOSAMPLES_TEST_SAMPLES_SERVER;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import static org.geosamples.Constants.GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME;
 
 public class CredentialsValidator {
 
@@ -45,8 +49,8 @@ public class CredentialsValidator {
 
     /**
      * Validates user credentials for use with GeoPass from SESAR using
-     * <a href="https://app.geosamples.org/webservices/credentials_service.php">Production Service v.2</a>. 
-     * Only one user_code will be returned in the ArrayList.
+     * <a href="https://app.geosamples.org/webservices/credentials_service.php">Production
+     * Service v.2</a>. Only one user_code will be returned in the ArrayList.
      *
      * @see
      * <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR
@@ -65,13 +69,13 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsProductionServiceV2(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "https://app.geosamples.org/webservices/credentials_service.php");
+        return validateUserCredentials(userName, password, GEOSAMPLES_PRODUCTION_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME);
     }
 
     /**
      * Validates user credentials for use with GeoPass from SESAR using
-     * <a href="https://sesardev.geosamples.org/webservices/credentials_service.php">Development Service 1</a>. 
-     * Only one user_code will be returned in the ArrayList.
+     * <a href="https://sesardev.geosamples.org/webservices/credentials_service.php">Development
+     * Service 1</a>. Only one user_code will be returned in the ArrayList.
      *
      * @see
      * <a href="http://www.iedadata.org/services/sesar_api#2.sesarusercredential">SESAR
@@ -90,14 +94,15 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsDevelopmentService1(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "https://sesardev.geosamples.org/webservices/credentials_service.php");
+        return validateUserCredentials(userName, password, GEOSAMPLES_TEST_SAMPLES_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME);
     }
 
     /**
      * Validates user credentials for use with GeoPass from SESAR using
-     * <a href="https://sesar3.geosamples.org/webservices/credentials_service_v2.php">Development Service 2</a>. 
-     * ArrayList first element will be requestor's user code (if any) followed by all accessible user codes,
-     * which are those does whose owners have given permissions to the requestor.  Future versions will
+     * <a href="https://sesar3.geosamples.org/webservices/credentials_service_v2.php">Development
+     * Service 2</a>. ArrayList first element will be requestor's user code (if
+     * any) followed by all accessible user codes, which are those does whose
+     * owners have given permissions to the requestor. Future versions will
      * provide these permissions to caller.
      *
      * @see
@@ -117,7 +122,7 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsDevelopmentService2(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, "https://sesar3.geosamples.org/credentials_service_v2.php");
+        return validateUserCredentials(userName, password, GEOSAMPLES_TEST_FEATURES_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME);
     }
 
     /**
