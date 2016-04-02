@@ -34,8 +34,6 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -66,6 +64,7 @@ import static org.geosamples.Constants.GEOSAMPLES_COMPLIANT_XML_HEADER_SAMPLES;
 import static org.geosamples.Constants.GEOSAMPLES_PRODUCTION_SERVER;
 import static org.geosamples.Constants.GEOSAMPLES_SAMPLE_IGSN_WEBSERVICE_NAME;
 import static org.geosamples.Constants.GEOSAMPLES_SAMPLE_LIST_PER_USERCODE_WEBSERVICE_NAME;
+import static org.geosamples.Constants.GEOSAMPLES_SAMPLE_UPDATE_IGSN_WEBSERVICE_NAME;
 import static org.geosamples.Constants.GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME;
 import static org.geosamples.Constants.GEOSAMPLES_TEST_FEATURES_SERVER;
 import static org.geosamples.Constants.GEOSAMPLES_TEST_SAMPLES_SERVER;
@@ -535,10 +534,16 @@ public class Samples implements XMLDocumentInterface {
         return compliantXmlOutput;
     }
 
-    public static boolean validateSamplesForUpload(Samples samples) {
+    /**
+     *
+     * @param samples the value of samples
+     * @param updating the value of updating
+     * @return the boolean
+     */
+    public static boolean validateSamplesForUpload(Samples samples, boolean updating) {
         boolean areValid = true;
         for (Sample sample : samples.getSample()) {
-            areValid = areValid && validateSampleForUpload(sample);
+            areValid = areValid && validateSampleForUpload(sample, updating);
         }
         return areValid;
     }
@@ -552,24 +557,32 @@ public class Samples implements XMLDocumentInterface {
      * @param sample = Sample object
      * @return boolean
      */
-    public static boolean validateSampleForUpload(Sample sample) {
+    public static boolean validateSampleForUpload(Sample sample, boolean updating) {
         boolean isValid = true;
 
-        isValid = isValid && (sample.getUserCode() != null);
-        isValid = isValid && checkThatValueIsLegal(SampleType.class, sample.getSampleType());
-        isValid = isValid && (sample.getName() != null);
-        isValid = isValid && checkThatValueIsLegal(Material.class, sample.getMaterial());
+        if (updating) {
+            isValid = isValid && (sample.getUserCode() == null);
+        } else {
+            isValid = isValid && (sample.getUserCode() != null);
+
+        }
+
+        isValid = isValid && checkThatValueIsLegal(SampleType.class, sample.getSampleType(), !updating);
+        isValid = isValid && (updating ? true : sample.getName() != null);
+        isValid = isValid && checkThatValueIsLegal(Material.class, sample.getMaterial(), !updating);
         // these fields must be empty
         isValid = isValid && (sample.getQrcodeImgSrc() == null);
         isValid = isValid && (sample.getUrl() == null);
         isValid = isValid && (sample.getParents() == null);
         isValid = isValid && (sample.getSiblings() == null);
         isValid = isValid && (sample.getChildren() == null);
+        isValid = isValid && (sample.getError() == null);
+        isValid = isValid && (sample.getStatus() == null);
 
         return isValid;
     }
 
-    private static <T extends Enum<T>> boolean checkThatValueIsLegal(Class<T> enumType, String name) {
+    private static <T extends Enum<T>> boolean checkThatValueIsLegal(Class<T> enumType, String name, boolean required) {
         boolean isLegal = (name != null);
         if (isLegal) {
             try {
@@ -577,6 +590,8 @@ public class Samples implements XMLDocumentInterface {
             } catch (IllegalArgumentException e) {
                 isLegal = false;
             }
+        } else {
+            isLegal = !required;
         }
 
         return isLegal;
@@ -664,36 +679,72 @@ public class Samples implements XMLDocumentInterface {
     private static XMLDocumentInterface registerSampleMetaDataWithSesar(String username, String password, XMLDocumentInterface samples, String serverURL)
             throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
 
-        String serviceURL = serverURL + GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME;
-        boolean areValid = validateSamplesForUpload((Samples) samples);
+        boolean areValid = validateSamplesForUpload((Samples) samples, false);
+        if (areValid) {
+            return uploadSampleMetaDataWithSesar(username, password, samples, serverURL + GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME);
+        } else {
+            throw new JAXBException("Invalid content in sample XML.");
+        }
+    }
+
+    public static XMLDocumentInterface updateSampleMetaDataWithSesarTestService(String username, String password, XMLDocumentInterface samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        XMLDocumentInterface success = updateSampleMetaDataWithSesar(username, password, samples, GEOSAMPLES_TEST_SAMPLES_SERVER);
+        return success;
+    }
+
+    public static XMLDocumentInterface updateSampleMetaDataWithSesarTestFeatureService(String username, String password, XMLDocumentInterface samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        XMLDocumentInterface success = updateSampleMetaDataWithSesar(username, password, samples, GEOSAMPLES_TEST_FEATURES_SERVER);
+        return success;
+    }
+
+    public static XMLDocumentInterface updateSampleMetaDataWithSesarProductionService(String username, String password, XMLDocumentInterface samples)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        XMLDocumentInterface success = updateSampleMetaDataWithSesar(username, password, samples, GEOSAMPLES_PRODUCTION_SERVER);
+        return success;
+    }
+
+    private static XMLDocumentInterface updateSampleMetaDataWithSesar(String username, String password, XMLDocumentInterface samples, String serverURL)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+
+        boolean areValid = validateSamplesForUpload((Samples) samples, true);
+        if (areValid) {
+            return uploadSampleMetaDataWithSesar(username, password, samples, serverURL + GEOSAMPLES_SAMPLE_UPDATE_IGSN_WEBSERVICE_NAME);
+        } else {
+            throw new JAXBException("Invalid content in sample XML.");
+        }
+    }
+
+    private static XMLDocumentInterface uploadSampleMetaDataWithSesar(String username, String password, XMLDocumentInterface samples, String serviceURL)
+            throws JAXBException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+
         XMLDocumentInterface success = new Results();
 
-        if (areValid) {
-            // prepare shipment
-            String serialSamples = serializeSamplesToCompliantXML(samples);
-            List<NameValuePair> nvps = new ArrayList<>();
-            nvps.add(new BasicNameValuePair("username", username));
-            nvps.add(new BasicNameValuePair("password", password));
-            nvps.add(new BasicNameValuePair("content", serialSamples));
+        // prepare shipment
+        String serialSamples = serializeSamplesToCompliantXML(samples);
+        List<NameValuePair> nvps = new ArrayList<>();
+        nvps.add(new BasicNameValuePair("username", username));
+        nvps.add(new BasicNameValuePair("password", password));
+        nvps.add(new BasicNameValuePair("content", serialSamples));
 
-            // setup service
-            CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
-            HttpPost httpPost = new HttpPost(serviceURL);
+        // setup service
+        CloseableHttpClient httpClient = org.geosamples.utilities.HTTPClient.clientWithNoSecurityValidation();
+        HttpPost httpPost = new HttpPost(serviceURL);
 
-            httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-            CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+        CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
 
-            //success = httpResponse.getStatusLine().getStatusCode() == 200;
-            HttpEntity myEntity = httpResponse.getEntity();
-            InputStream response = myEntity.getContent();
+        //success = httpResponse.getStatusLine().getStatusCode() == 200;
+        HttpEntity myEntity = httpResponse.getEntity();
+        InputStream response = myEntity.getContent();
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(Results.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            success = (XMLDocumentInterface) jaxbUnmarshaller.unmarshal(response);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Results.class);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        success = (XMLDocumentInterface) jaxbUnmarshaller.unmarshal(response);
 
-            // and ensure it is fully consumed
-            EntityUtils.consume(myEntity);
-        }
+        // and ensure it is fully consumed
+        EntityUtils.consume(myEntity);
 
         return success;
     }
@@ -2781,52 +2832,62 @@ public class Samples implements XMLDocumentInterface {
         Sample mySample = new Sample();
         mySamples.getSample().add(mySample);
 
-        mySample.setUserCode("JFB");
-        mySample.setIgsn("JFB000038");
-        mySample.setParentIgsn("JFB000030");
-        mySample.setName("yes");
-        mySample.setSampleType(SampleType.CORE.value());
-        mySample.setMaterial(Material.ROCK.value());
-        Classification myRockClass = new Classification();
-        myRockClass.setRock(new Classification.Rock());
-//        myRockClass.getRock().setSedimentary(new Classification.Rock.Sedimentary());
-//        myRockClass.getRock().getSedimentary().setSedimentaryType(SedimentaryDetails.EVAPORITE);
-
-        myRockClass.getRock().setIgneous(new IgneousType());
-        myRockClass.getRock().getIgneous().setPlutonic(new IgneousType.Plutonic());
-        myRockClass.getRock().getIgneous().getPlutonic().setPlutonicType(IgneousDetails.MAFIC);
-
-        mySample.setClassification(myRockClass);
-        mySample.setCountry("Zambia");
-
-        XMLDocumentInterface success = null;
+//        mySample.setUserCode("JFB");
+//        mySample.setIgsn("JFB000038");
+//        mySample.setParentIgsn("JFB000030");
+//        mySample.setName("yes");
+//        mySample.setSampleType(SampleType.CORE.value());
+//        mySample.setMaterial(Material.ROCK.value());
+//        Classification myRockClass = new Classification();
+//        myRockClass.setRock(new Classification.Rock());
+////        myRockClass.getRock().setSedimentary(new Classification.Rock.Sedimentary());
+////        myRockClass.getRock().getSedimentary().setSedimentaryType(SedimentaryDetails.EVAPORITE);
+//
+//        myRockClass.getRock().setIgneous(new IgneousType());
+//        myRockClass.getRock().getIgneous().setPlutonic(new IgneousType.Plutonic());
+//        myRockClass.getRock().getIgneous().getPlutonic().setPlutonicType(IgneousDetails.MAFIC);
+//
+//        mySample.setClassification(myRockClass);
+//        mySample.setCountry("Zambia");
+//
+//        XMLDocumentInterface success = null;
+//        try {
+//            success = registerSampleMetaDataWithSesarTestService("bowring@gmail.com", "redux00", mySamples);
+//            System.out.println("HELP");
+//        } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException ex) {
+//            Logger.getLogger(Samples.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        XMLDocumentInterface gotSamples = null;
+//        try {
+//            gotSamples = downloadSampleMetadataFromTestSesarIGSN("JFB000038");///ODP000002");// this should be a results
+//        } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
+//        }
+//
+//        try {
+//            System.out.println(serializeSamplesToCompliantXMLPrettyPrint(gotSamples));
+//        } catch (JAXBException jAXBException) {
+//        }
+//
+//        System.out.println("+++++++++++++++++++++++");
+//        XMLDocumentInterface myList = null;
+//        try {
+//            myList = downloadSampleListFromTestSesarPerUsercode("JFB");
+//        } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
+//        }
+//        try {
+//            System.out.println(serializeSamplesToCompliantXMLPrettyPrint(myList));
+//        } catch (JAXBException jAXBException) {
+//        }
+        mySamples = new Samples();
+        mySample = new Sample();
+        mySamples.getSample().add(mySample);
+        mySample.setIgsn("JFB000031");
+        mySample.setName("TESTING UPDATE2");
         try {
-            success = registerSampleMetaDataWithSesarTestFeatureService("bowring@gmail.com", "redux00", mySamples);
-            System.out.println("HELP");
-        } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException ex) {
-            Logger.getLogger(Samples.class.getName()).log(Level.SEVERE, null, ex);
+            updateSampleMetaDataWithSesarTestService("bowring@gmail.com", "redux00", mySamples);
+        } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException jAXBException) {
         }
 
-        XMLDocumentInterface gotSamples = null;
-        try {
-            gotSamples = downloadSampleMetadataFromTestFeaturesServiceSesarIGSN("JFB000038");///ODP000002");// this should be a results
-        } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
-        }
-
-        try {
-            System.out.println(serializeSamplesToCompliantXMLPrettyPrint(gotSamples));
-        } catch (JAXBException jAXBException) {
-        }
-
-        System.out.println("+++++++++++++++++++++++");
-        XMLDocumentInterface myList = null;
-        try {
-            myList = downloadSampleListFromTestSesarPerUsercode("JFB");
-        } catch (IOException | JAXBException | ParserConfigurationException | SAXException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException iOException) {
-        }
-        try {
-            System.out.println(serializeSamplesToCompliantXMLPrettyPrint(myList));
-        } catch (JAXBException jAXBException) {
-        }
     }
 }

@@ -34,6 +34,8 @@ public class Constants {
     public static String GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME = "webservices/upload.php";
     
     public static String GEOSAMPLES_SAMPLE_LIST_PER_USERCODE_WEBSERVICE_NAME = "samples/user_code/";
+    
+    public static String GEOSAMPLES_SAMPLE_UPDATE_IGSN_WEBSERVICE_NAME = "webservices/update.php";
 
     public static String GEOSAMPLES_COMPLIANT_XML_HEADER_SAMPLES = "<samples xmlns=\"http://app.geosamples.org\" \n"
             + "           xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n"
