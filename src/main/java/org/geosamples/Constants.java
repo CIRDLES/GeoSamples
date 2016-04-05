@@ -39,7 +39,7 @@ public class Constants {
 
     public static String GEOSAMPLES_COMPLIANT_XML_HEADER_SAMPLES = "<samples xmlns=\"http://app.geosamples.org\" \n"
             + "           xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n"
-            + "           xsi:schemaLocation=\"http://app.geosamples.org\n"
-            + "                                http://app.geosamples.org/samplev2.xsd \">";
+            + "           xsi:schemaLocation=\"https://app.geosamples.org\n"
+            + "                                https://app.geosamples.org/samplev2.xsd \">";
 
 }
