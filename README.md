@@ -12,7 +12,7 @@ Two serializing methods to XML strings are provided - plain and pretty-print.
 
 One method for validating a Sample object for upload is provided.
 
-[JavaDocs in browser](https://jitpack.io/com/github/cirdles/GeoSamples/v.1.0.4/javadoc/)
+[JavaDocs in browser](https://jitpack.io/com/github/cirdles/GeoSamples/v.2.0.0/javadoc/)
 
 
 This is a work-in-progress, so please contribute ideas, code, docs, etc.
@@ -29,6 +29,6 @@ and this reference to GeoSamples:
       <dependency>
         <groupId>com.github.cirdles</groupId>
         <artifactId>GeoSamples</artifactId>
-        <version>v.1.0.5</version>
+        <version>v.2.0.0</version>
       </dependency>
 ```
