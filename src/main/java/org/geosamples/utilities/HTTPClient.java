@@ -47,7 +47,7 @@ public class HTTPClient {
     public static CloseableHttpClient clientWithNoSecurityValidation()
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
 
-        HttpClientBuilder b = HttpClientBuilder.create();
+        HttpClientBuilder clientBuilder = HttpClientBuilder.create();
 
         // setup a Trust Strategy that allows all certificates.
         SSLContext sslContext = null;
@@ -56,7 +56,7 @@ public class HTTPClient {
                 .loadTrustMaterial(null, (X509Certificate[] arg0, String arg1) -> true)
                 .build();
 
-        b.setSSLContext(sslContext);
+        clientBuilder.setSSLContext(sslContext);
 
         // don't check Hostnames, either.
         HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
@@ -74,9 +74,9 @@ public class HTTPClient {
         // now, we create connection-manager using our Registry.
         //      -- allows multi-threaded use
         PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-        b.setConnectionManager(connMgr);
+        clientBuilder.setConnectionManager(connMgr);
 
-        CloseableHttpClient httpClient = b.build();
+        CloseableHttpClient httpClient = clientBuilder.build();
 
         return httpClient;
     }

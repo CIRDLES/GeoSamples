@@ -15,6 +15,7 @@
  */
 package org.geosamples.samples;
 
+import org.geosamples.XMLDocumentInterface;
 import org.apache.http.conn.HttpHostConnectException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -49,7 +50,7 @@ public class SamplesTest {
     }
 
     /**
-     * Test of deserializeProductionSesar3IGSN method, of class Samples.
+     * Test of downloadSampleMetadataFromTestFeaturesServiceSesarIGSN method, of class Samples.
      *
      * @throws java.lang.Exception
      */
@@ -58,10 +59,10 @@ public class SamplesTest {
         System.out.println("deserializeProductionSesar3IGSN");
         String igsn = "ODP000002";
         String expResult = "ODP000002";
-        Samples result = null;
+        XMLDocumentInterface result = null;
 
         try {
-            result = Samples.deserializeProductionSesar3IGSN(igsn);
+            result = Samples.downloadSampleMetadataFromTestFeaturesServiceSesarIGSN(igsn);
         } catch (HttpHostConnectException httpHostConnectException) {
             //  server is often down for maintenance
             assert (true);
@@ -74,7 +75,7 @@ public class SamplesTest {
         igsn = "X";
         expResult = null;
         try {
-            result = Samples.deserializeProductionSesar3IGSN(igsn);
+            result = Samples.downloadSampleMetadataFromTestFeaturesServiceSesarIGSN(igsn);
         } catch (HttpHostConnectException httpHostConnectException) {
             //  server is often down for maintenance
             assert (true);
@@ -85,7 +86,7 @@ public class SamplesTest {
     }
 
     /**
-     * Test of deserializeProductionSesar2IGSN method, of class Samples.
+     * Test of downloadSampleMetadataFromProductionSesarIGSN method, of class Samples.
      *
      * @throws java.lang.Exception
      */
@@ -94,9 +95,9 @@ public class SamplesTest {
         System.out.println("deserializeProductionSesar2IGSN");
         String igsn = "ODP000002";
         String expResult = "ODP000002";
-        Samples result = null;
+        XMLDocumentInterface result = null;
         try {
-            result = Samples.deserializeProductionSesar2IGSN(igsn);
+            result = Samples.downloadSampleMetadataFromProductionSesarIGSN(igsn);
         } catch (HttpHostConnectException httpHostConnectException) {
             //  server is often down for maintenance
             assert (true);
@@ -109,7 +110,7 @@ public class SamplesTest {
         igsn = "X";
         expResult = null;
         try {
-            result = Samples.deserializeProductionSesar2IGSN(igsn);
+            result = Samples.downloadSampleMetadataFromProductionSesarIGSN(igsn);
         } catch (HttpHostConnectException httpHostConnectException) {
             //  server is often down for maintenance
             assert (true);
@@ -120,7 +121,7 @@ public class SamplesTest {
     }
 
     /**
-     * Test of deserializeTestIGSN method, of class Samples.
+     * Test of downloadSampleMetadataFromTestSesarIGSN method, of class Samples.
      *
      * @throws java.lang.Exception
      */
@@ -129,9 +130,9 @@ public class SamplesTest {
         System.out.println("deserializeTestIGSN");
         String igsn = "ODP000002";
         String expResult = "ODP000002";
-        Samples result = null;
+        XMLDocumentInterface result = null;
         try {
-            result = Samples.deserializeTestIGSN(igsn);
+            result = Samples.downloadSampleMetadataFromTestSesarIGSN(igsn);
             assertEquals(expResult, result.getSample().get(0).getIgsn());
         } catch (HttpHostConnectException httpHostConnectException) {
             // test server is often down for maintenance
@@ -146,7 +147,7 @@ public class SamplesTest {
         expResult = null;
         result = null;
         try {
-            result = Samples.deserializeTestIGSN(igsn);
+            result = Samples.downloadSampleMetadataFromTestSesarIGSN(igsn);
             assertEquals(expResult, result.getSample().get(0).getIgsn());
         } catch (HttpHostConnectException httpHostConnectException) {
             // test server is often down for maintenance
