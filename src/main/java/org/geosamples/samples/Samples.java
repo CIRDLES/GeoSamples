@@ -34,6 +34,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -586,7 +588,7 @@ public class Samples implements XMLDocumentInterface {
         boolean isLegal = (name != null);
         if (isLegal) {
             try {
-                Enum.valueOf(enumType, name.toUpperCase());
+                Enum.valueOf(enumType, name.toUpperCase().replaceAll(" ", "_"));
             } catch (IllegalArgumentException e) {
                 isLegal = false;
             }
@@ -2832,12 +2834,12 @@ public class Samples implements XMLDocumentInterface {
         Sample mySample = new Sample();
         mySamples.getSample().add(mySample);
 
-//        mySample.setUserCode("JFB");
-//        mySample.setIgsn("JFB000038");
+        mySample.setUserCode("JFB");
+        mySample.setIgsn("JFB123006");
 //        mySample.setParentIgsn("JFB000030");
-//        mySample.setName("yes");
-//        mySample.setSampleType(SampleType.CORE.value());
-//        mySample.setMaterial(Material.ROCK.value());
+        mySample.setName("Unknowns");
+        mySample.setSampleType(SampleType.INDIVIDUAL_SAMPLE.value());
+        mySample.setMaterial(Material.ROCK.value());
 //        Classification myRockClass = new Classification();
 //        myRockClass.setRock(new Classification.Rock());
 ////        myRockClass.getRock().setSedimentary(new Classification.Rock.Sedimentary());
@@ -2850,13 +2852,13 @@ public class Samples implements XMLDocumentInterface {
 //        mySample.setClassification(myRockClass);
 //        mySample.setCountry("Zambia");
 //
-//        XMLDocumentInterface success = null;
-//        try {
-//            success = registerSampleMetaDataWithSesarTestService("bowring@gmail.com", "redux00", mySamples);
-//            System.out.println("HELP");
-//        } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException ex) {
-//            Logger.getLogger(Samples.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        XMLDocumentInterface success = null;
+        try {
+            success = registerSampleMetaDataWithSesarTestService("bowring@gmail.com", "redux00", mySamples);
+            System.out.println("HELP");
+        } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException ex) {
+            Logger.getLogger(Samples.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //
 //        XMLDocumentInterface gotSamples = null;
 //        try {
