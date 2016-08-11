@@ -564,9 +564,9 @@ public class Samples implements XMLDocumentInterface {
         boolean isValid;
 
         if (updating) {
-            isValid = (sample.getUserCode() == null);
+            isValid = sample.getUserCode() == null;
         } else {
-            isValid = (sample.getUserCode() != null);
+            isValid = sample.getUserCode() != null;
         }
 
         isValid = isValid && checkThatValueIsLegal(SampleType.class, sample.getSampleType(), !updating);
