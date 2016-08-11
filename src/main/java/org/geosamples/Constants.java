@@ -30,7 +30,9 @@ public class Constants {
     public static final String GEOSAMPLES_SAMPLE_IGSN_WEBSERVICE_NAME = "sample/IGSN/";
 
     public static final String GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME = "webservices/credentials_service.php";
-
+    
+    public static final String GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME_V2 = "webservices/credentials_service_v2.php";
+    
     public static final String GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME = "webservices/upload.php";
 
     public static final String GEOSAMPLES_SAMPLE_LIST_PER_USERCODE_WEBSERVICE_NAME = "samples/user_code/";

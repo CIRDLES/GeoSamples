@@ -34,13 +34,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import static org.geosamples.Constants.GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME_V2;
 import static org.geosamples.Constants.GEOSAMPLES_PRODUCTION_SERVER;
 import static org.geosamples.Constants.GEOSAMPLES_TEST_FEATURES_SERVER;
 import static org.geosamples.Constants.GEOSAMPLES_TEST_SAMPLES_SERVER;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import static org.geosamples.Constants.GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME;
 
 public class CredentialsValidator {
 
@@ -69,7 +69,7 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsProductionServiceV2(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, GEOSAMPLES_PRODUCTION_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME);
+        return validateUserCredentials(userName, password, GEOSAMPLES_PRODUCTION_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME_V2);
     }
 
     /**
@@ -94,7 +94,7 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsDevelopmentService1(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, GEOSAMPLES_TEST_SAMPLES_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME);
+        return validateUserCredentials(userName, password, GEOSAMPLES_TEST_SAMPLES_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME_V2);
     }
 
     /**
@@ -122,7 +122,7 @@ public class CredentialsValidator {
      */
     public static ArrayList<String> validateUserCredentialsDevelopmentService2(String userName, String password)
             throws IOException, ParserConfigurationException, SAXException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-        return validateUserCredentials(userName, password, GEOSAMPLES_TEST_FEATURES_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME);
+        return validateUserCredentials(userName, password, GEOSAMPLES_TEST_FEATURES_SERVER + GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME_V2);
     }
 
     /**
