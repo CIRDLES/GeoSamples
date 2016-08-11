@@ -21,10 +21,6 @@ package org.geosamples;
  */
 public class Constants {
 
-    private Constants() {
-        throw new IllegalAccessError("Utility class");
-    }
-
     public final static String GEOSAMPLES_PRODUCTION_SERVER = "https://app.geosamples.org/";
 
     public final static String GEOSAMPLES_TEST_SAMPLES_SERVER = "https://sesardev.geosamples.org/";
@@ -45,5 +41,9 @@ public class Constants {
             + "           xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n"
             + "           xsi:schemaLocation=\"https://app.geosamples.org\n"
             + "                                https://app.geosamples.org/samplev2.xsd \">";
+
+    private Constants() {
+        throw new IllegalAccessError("Utility class");
+    }
 
 }
