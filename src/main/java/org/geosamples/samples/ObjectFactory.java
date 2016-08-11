@@ -51,71 +51,72 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Url_QNAME = new QName("http://app.geosamples.org", "url");
-    private final static QName _CollectorDetail_QNAME = new QName("http://app.geosamples.org", "collector_detail");
-    private final static QName _Country_QNAME = new QName("http://app.geosamples.org", "country");
-    private final static QName _Size_QNAME = new QName("http://app.geosamples.org", "size");
-    private final static QName _PrimaryLocationType_QNAME = new QName("http://app.geosamples.org", "primary_location_type");
-    private final static QName _County_QNAME = new QName("http://app.geosamples.org", "county");
-    private final static QName _CurrentArchive_QNAME = new QName("http://app.geosamples.org", "current_archive");
-    private final static QName _UrlType_QNAME = new QName("http://app.geosamples.org", "url_type");
-    private final static QName _PlatformType_QNAME = new QName("http://app.geosamples.org", "platform_type");
-    private final static QName _CruiseFieldPrgrm_QNAME = new QName("http://app.geosamples.org", "cruise_field_prgrm");
-    private final static QName _LaunchPlatformName_QNAME = new QName("http://app.geosamples.org", "launch_platform_name");
-    private final static QName _SampleComment_QNAME = new QName("http://app.geosamples.org", "sample_comment");
-    private final static QName _Northing_QNAME = new QName("http://app.geosamples.org", "northing");
-    private final static QName _GeologicalAge_QNAME = new QName("http://app.geosamples.org", "geological_age");
-    private final static QName _AgeUnit_QNAME = new QName("http://app.geosamples.org", "age_unit");
-    private final static QName _IsPrivate_QNAME = new QName("http://app.geosamples.org", "is_private");
-    private final static QName _Latitude_QNAME = new QName("http://app.geosamples.org", "latitude");
-    private final static QName _OriginalArchiveContact_QNAME = new QName("http://app.geosamples.org", "original_archive_contact");
-    private final static QName _SizeUnit_QNAME = new QName("http://app.geosamples.org", "size_unit");
-    private final static QName _PlatformDescr_QNAME = new QName("http://app.geosamples.org", "platform_descr");
-    private final static QName _FieldName_QNAME = new QName("http://app.geosamples.org", "field_name");
-    private final static QName _DepthMin_QNAME = new QName("http://app.geosamples.org", "depth_min");
-    private final static QName _CollectionMethod_QNAME = new QName("http://app.geosamples.org", "collection_method");
-    private final static QName _City_QNAME = new QName("http://app.geosamples.org", "city");
-    private final static QName _UserCode_QNAME = new QName("http://app.geosamples.org", "user_code");
-    private final static QName _CollectionStartDate_QNAME = new QName("http://app.geosamples.org", "collection_start_date");
-    private final static QName _DepthMax_QNAME = new QName("http://app.geosamples.org", "depth_max");
-    private final static QName _LocationDescription_QNAME = new QName("http://app.geosamples.org", "location_description");
-    private final static QName _PlatformName_QNAME = new QName("http://app.geosamples.org", "platform_name");
-    private final static QName _Description_QNAME = new QName("http://app.geosamples.org", "description");
-    private final static QName _UrlDescription_QNAME = new QName("http://app.geosamples.org", "url_description");
-    private final static QName _Province_QNAME = new QName("http://app.geosamples.org", "province");
-    private final static QName _LocalityDescription_QNAME = new QName("http://app.geosamples.org", "locality_description");
-    private final static QName _OriginalArchive_QNAME = new QName("http://app.geosamples.org", "original_archive");
-    private final static QName _Longitude_QNAME = new QName("http://app.geosamples.org", "longitude");
-    private final static QName _PublishDate_QNAME = new QName("http://app.geosamples.org", "publish_date");
-    private final static QName _Elevation_QNAME = new QName("http://app.geosamples.org", "elevation");
-    private final static QName _CollectionDatePrecision_QNAME = new QName("http://app.geosamples.org", "collection_date_precision");
-    private final static QName _Material_QNAME = new QName("http://app.geosamples.org", "material");
-    private final static QName _AgeMax_QNAME = new QName("http://app.geosamples.org", "age_max");
-    private final static QName _Easting_QNAME = new QName("http://app.geosamples.org", "easting");
-    private final static QName _ParentIgsn_QNAME = new QName("http://app.geosamples.org", "parent_igsn");
-    private final static QName _Igsn_QNAME = new QName("http://app.geosamples.org", "igsn");
-    private final static QName _NavigationType_QNAME = new QName("http://app.geosamples.org", "navigation_type");
-    private final static QName _CollectionEndDate_QNAME = new QName("http://app.geosamples.org", "collection_end_date");
-    private final static QName _Zone_QNAME = new QName("http://app.geosamples.org", "zone");
-    private final static QName _Locality_QNAME = new QName("http://app.geosamples.org", "locality");
-    private final static QName _LaunchTypeName_QNAME = new QName("http://app.geosamples.org", "launch_type_name");
-    private final static QName _SampleType_QNAME = new QName("http://app.geosamples.org", "sample_type");
-    private final static QName _LongitudeEnd_QNAME = new QName("http://app.geosamples.org", "longitude_end");
-    private final static QName _LatitudeEnd_QNAME = new QName("http://app.geosamples.org", "latitude_end");
-    private final static QName _VerticalDatum_QNAME = new QName("http://app.geosamples.org", "vertical_datum");
-    private final static QName _LaunchId_QNAME = new QName("http://app.geosamples.org", "launch_id");
-    private final static QName _AgeMin_QNAME = new QName("http://app.geosamples.org", "age_min");
-    private final static QName _ClassificationComment_QNAME = new QName("http://app.geosamples.org", "classification_comment");
-    private final static QName _Purpose_QNAME = new QName("http://app.geosamples.org", "purpose");
-    private final static QName _Name_QNAME = new QName("http://app.geosamples.org", "name");
-    private final static QName _SampleOtherName_QNAME = new QName("http://app.geosamples.org", "sample_other_name");
-    private final static QName _ElevationEnd_QNAME = new QName("http://app.geosamples.org", "elevation_end");
-    private final static QName _Collector_QNAME = new QName("http://app.geosamples.org", "collector");
-    private final static QName _GeologicalUnit_QNAME = new QName("http://app.geosamples.org", "geological_unit");
-    private final static QName _PrimaryLocationName_QNAME = new QName("http://app.geosamples.org", "primary_location_name");
-    private final static QName _DepthScale_QNAME = new QName("http://app.geosamples.org", "depth_scale");
-    private final static QName _CurrentArchiveContact_QNAME = new QName("http://app.geosamples.org", "current_archive_contact");
-    private final static QName _CollectionMethodDescr_QNAME = new QName("http://app.geosamples.org", "collection_method_descr");
+    private static final String GEOSAMPLES_URL = "http://app.geosamples.org";
+    private static final QName _Url_QNAME = new QName(GEOSAMPLES_URL, "url");
+    private static final QName _CollectorDetail_QNAME = new QName(GEOSAMPLES_URL, "collector_detail");
+    private static final QName _Country_QNAME = new QName(GEOSAMPLES_URL, "country");
+    private static final QName _Size_QNAME = new QName(GEOSAMPLES_URL, "size");
+    private static final QName _PrimaryLocationType_QNAME = new QName(GEOSAMPLES_URL, "primary_location_type");
+    private static final QName _County_QNAME = new QName(GEOSAMPLES_URL, "county");
+    private static final QName _CurrentArchive_QNAME = new QName(GEOSAMPLES_URL, "current_archive");
+    private static final QName _UrlType_QNAME = new QName(GEOSAMPLES_URL, "url_type");
+    private static final QName _PlatformType_QNAME = new QName(GEOSAMPLES_URL, "platform_type");
+    private static final QName _CruiseFieldPrgrm_QNAME = new QName(GEOSAMPLES_URL, "cruise_field_prgrm");
+    private static final QName _LaunchPlatformName_QNAME = new QName(GEOSAMPLES_URL, "launch_platform_name");
+    private static final QName _SampleComment_QNAME = new QName(GEOSAMPLES_URL, "sample_comment");
+    private static final QName _Northing_QNAME = new QName(GEOSAMPLES_URL, "northing");
+    private static final QName _GeologicalAge_QNAME = new QName(GEOSAMPLES_URL, "geological_age");
+    private static final QName _AgeUnit_QNAME = new QName(GEOSAMPLES_URL, "age_unit");
+    private static final QName _IsPrivate_QNAME = new QName(GEOSAMPLES_URL, "is_private");
+    private static final QName _Latitude_QNAME = new QName(GEOSAMPLES_URL, "latitude");
+    private static final QName _OriginalArchiveContact_QNAME = new QName(GEOSAMPLES_URL, "original_archive_contact");
+    private static final QName _SizeUnit_QNAME = new QName(GEOSAMPLES_URL, "size_unit");
+    private static final QName _PlatformDescr_QNAME = new QName(GEOSAMPLES_URL, "platform_descr");
+    private static final QName _FieldName_QNAME = new QName(GEOSAMPLES_URL, "field_name");
+    private static final QName _DepthMin_QNAME = new QName(GEOSAMPLES_URL, "depth_min");
+    private static final QName _CollectionMethod_QNAME = new QName(GEOSAMPLES_URL, "collection_method");
+    private static final QName _City_QNAME = new QName(GEOSAMPLES_URL, "city");
+    private static final QName _UserCode_QNAME = new QName(GEOSAMPLES_URL, "user_code");
+    private static final QName _CollectionStartDate_QNAME = new QName(GEOSAMPLES_URL, "collection_start_date");
+    private static final QName _DepthMax_QNAME = new QName(GEOSAMPLES_URL, "depth_max");
+    private static final QName _LocationDescription_QNAME = new QName(GEOSAMPLES_URL, "location_description");
+    private static final QName _PlatformName_QNAME = new QName(GEOSAMPLES_URL, "platform_name");
+    private static final QName _Description_QNAME = new QName(GEOSAMPLES_URL, "description");
+    private static final QName _UrlDescription_QNAME = new QName(GEOSAMPLES_URL, "url_description");
+    private static final QName _Province_QNAME = new QName(GEOSAMPLES_URL, "province");
+    private static final QName _LocalityDescription_QNAME = new QName(GEOSAMPLES_URL, "locality_description");
+    private static final QName _OriginalArchive_QNAME = new QName(GEOSAMPLES_URL, "original_archive");
+    private static final QName _Longitude_QNAME = new QName(GEOSAMPLES_URL, "longitude");
+    private static final QName _PublishDate_QNAME = new QName(GEOSAMPLES_URL, "publish_date");
+    private static final QName _Elevation_QNAME = new QName(GEOSAMPLES_URL, "elevation");
+    private static final QName _CollectionDatePrecision_QNAME = new QName(GEOSAMPLES_URL, "collection_date_precision");
+    private static final QName _Material_QNAME = new QName(GEOSAMPLES_URL, "material");
+    private static final QName _AgeMax_QNAME = new QName(GEOSAMPLES_URL, "age_max");
+    private static final QName _Easting_QNAME = new QName(GEOSAMPLES_URL, "easting");
+    private static final QName _ParentIgsn_QNAME = new QName(GEOSAMPLES_URL, "parent_igsn");
+    private static final QName _Igsn_QNAME = new QName(GEOSAMPLES_URL, "igsn");
+    private static final QName _NavigationType_QNAME = new QName(GEOSAMPLES_URL, "navigation_type");
+    private static final QName _CollectionEndDate_QNAME = new QName(GEOSAMPLES_URL, "collection_end_date");
+    private static final QName _Zone_QNAME = new QName(GEOSAMPLES_URL, "zone");
+    private static final QName _Locality_QNAME = new QName(GEOSAMPLES_URL, "locality");
+    private static final QName _LaunchTypeName_QNAME = new QName(GEOSAMPLES_URL, "launch_type_name");
+    private static final QName _SampleType_QNAME = new QName(GEOSAMPLES_URL, "sample_type");
+    private static final QName _LongitudeEnd_QNAME = new QName(GEOSAMPLES_URL, "longitude_end");
+    private static final QName _LatitudeEnd_QNAME = new QName(GEOSAMPLES_URL, "latitude_end");
+    private static final QName _VerticalDatum_QNAME = new QName(GEOSAMPLES_URL, "vertical_datum");
+    private static final QName _LaunchId_QNAME = new QName(GEOSAMPLES_URL, "launch_id");
+    private static final QName _AgeMin_QNAME = new QName(GEOSAMPLES_URL, "age_min");
+    private static final QName _ClassificationComment_QNAME = new QName(GEOSAMPLES_URL, "classification_comment");
+    private static final QName _Purpose_QNAME = new QName(GEOSAMPLES_URL, "purpose");
+    private static final QName _Name_QNAME = new QName(GEOSAMPLES_URL, "name");
+    private static final QName _SampleOtherName_QNAME = new QName(GEOSAMPLES_URL, "sample_other_name");
+    private static final QName _ElevationEnd_QNAME = new QName(GEOSAMPLES_URL, "elevation_end");
+    private static final QName _Collector_QNAME = new QName(GEOSAMPLES_URL, "collector");
+    private static final QName _GeologicalUnit_QNAME = new QName(GEOSAMPLES_URL, "geological_unit");
+    private static final QName _PrimaryLocationName_QNAME = new QName(GEOSAMPLES_URL, "primary_location_name");
+    private static final QName _DepthScale_QNAME = new QName(GEOSAMPLES_URL, "depth_scale");
+    private static final QName _CurrentArchiveContact_QNAME = new QName(GEOSAMPLES_URL, "current_archive_contact");
+    private static final QName _CollectionMethodDescr_QNAME = new QName(GEOSAMPLES_URL, "collection_method_descr");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: sample
@@ -292,7 +293,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "url")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "url")
     public JAXBElement<String> createUrl(String value) {
         return new JAXBElement<>(_Url_QNAME, String.class, null, value);
     }
@@ -303,7 +304,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collector_detail")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collector_detail")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectorDetail(String value) {
         return new JAXBElement<>(_CollectorDetail_QNAME, String.class, null, value);
@@ -315,7 +316,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "country")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "country")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCountry(String value) {
         return new JAXBElement<>(_Country_QNAME, String.class, null, value);
@@ -327,7 +328,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "size")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "size")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSize(String value) {
         return new JAXBElement<>(_Size_QNAME, String.class, null, value);
@@ -339,7 +340,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "primary_location_type")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "primary_location_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPrimaryLocationType(String value) {
         return new JAXBElement<>(_PrimaryLocationType_QNAME, String.class, null, value);
@@ -351,7 +352,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "county")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "county")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCounty(String value) {
         return new JAXBElement<>(_County_QNAME, String.class, null, value);
@@ -363,7 +364,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "current_archive")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "current_archive")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCurrentArchive(String value) {
         return new JAXBElement<>(_CurrentArchive_QNAME, String.class, null, value);
@@ -375,7 +376,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "url_type")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "url_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createUrlType(String value) {
         return new JAXBElement<>(_UrlType_QNAME, String.class, null, value);
@@ -387,7 +388,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "platform_type")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "platform_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPlatformType(String value) {
         return new JAXBElement<>(_PlatformType_QNAME, String.class, null, value);
@@ -399,7 +400,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "cruise_field_prgrm")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "cruise_field_prgrm")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCruiseFieldPrgrm(String value) {
         return new JAXBElement<>(_CruiseFieldPrgrm_QNAME, String.class, null, value);
@@ -411,7 +412,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "launch_platform_name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "launch_platform_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLaunchPlatformName(String value) {
         return new JAXBElement<>(_LaunchPlatformName_QNAME, String.class, null, value);
@@ -423,7 +424,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "sample_comment")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "sample_comment")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSampleComment(String value) {
         return new JAXBElement<>(_SampleComment_QNAME, String.class, null, value);
@@ -435,7 +436,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "northing")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "northing")
     public JAXBElement<BigDecimal> createNorthing(BigDecimal value) {
         return new JAXBElement<>(_Northing_QNAME, BigDecimal.class, null, value);
     }
@@ -446,7 +447,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "geological_age")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "geological_age")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createGeologicalAge(String value) {
         return new JAXBElement<>(_GeologicalAge_QNAME, String.class, null, value);
@@ -458,7 +459,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "age_unit")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "age_unit")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createAgeUnit(String value) {
         return new JAXBElement<>(_AgeUnit_QNAME, String.class, null, value);
@@ -470,7 +471,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "is_private", defaultValue = "0")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "is_private", defaultValue = "0")
     public JAXBElement<BigInteger> createIsPrivate(BigInteger value) {
         return new JAXBElement<>(_IsPrivate_QNAME, BigInteger.class, null, value);
     }
@@ -481,7 +482,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "latitude")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "latitude")
     public JAXBElement<BigDecimal> createLatitude(BigDecimal value) {
         return new JAXBElement<>(_Latitude_QNAME, BigDecimal.class, null, value);
     }
@@ -492,7 +493,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "original_archive_contact")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "original_archive_contact")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createOriginalArchiveContact(String value) {
         return new JAXBElement<>(_OriginalArchiveContact_QNAME, String.class, null, value);
@@ -504,7 +505,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "size_unit")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "size_unit")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSizeUnit(String value) {
         return new JAXBElement<>(_SizeUnit_QNAME, String.class, null, value);
@@ -516,7 +517,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "platform_descr")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "platform_descr")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPlatformDescr(String value) {
         return new JAXBElement<>(_PlatformDescr_QNAME, String.class, null, value);
@@ -528,7 +529,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "field_name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "field_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createFieldName(String value) {
         return new JAXBElement<>(_FieldName_QNAME, String.class, null, value);
@@ -540,7 +541,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "depth_min")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "depth_min")
     public JAXBElement<BigDecimal> createDepthMin(BigDecimal value) {
         return new JAXBElement<>(_DepthMin_QNAME, BigDecimal.class, null, value);
     }
@@ -551,7 +552,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_method")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collection_method")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectionMethod(String value) {
         return new JAXBElement<>(_CollectionMethod_QNAME, String.class, null, value);
@@ -563,7 +564,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "city")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "city")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCity(String value) {
         return new JAXBElement<>(_City_QNAME, String.class, null, value);
@@ -575,7 +576,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "user_code")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "user_code")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createUserCode(String value) {
         return new JAXBElement<>(_UserCode_QNAME, String.class, null, value);
@@ -587,7 +588,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_start_date")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collection_start_date")
     public JAXBElement<XMLGregorianCalendar> createCollectionStartDate(XMLGregorianCalendar value) {
         return new JAXBElement<>(_CollectionStartDate_QNAME, XMLGregorianCalendar.class, null, value);
     }
@@ -598,7 +599,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "depth_max")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "depth_max")
     public JAXBElement<BigDecimal> createDepthMax(BigDecimal value) {
         return new JAXBElement<>(_DepthMax_QNAME, BigDecimal.class, null, value);
     }
@@ -609,7 +610,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "location_description")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "location_description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLocationDescription(String value) {
         return new JAXBElement<>(_LocationDescription_QNAME, String.class, null, value);
@@ -621,7 +622,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "platform_name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "platform_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPlatformName(String value) {
         return new JAXBElement<>(_PlatformName_QNAME, String.class, null, value);
@@ -633,7 +634,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "description")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createDescription(String value) {
         return new JAXBElement<>(_Description_QNAME, String.class, null, value);
@@ -645,7 +646,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "url_description")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "url_description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createUrlDescription(String value) {
         return new JAXBElement<>(_UrlDescription_QNAME, String.class, null, value);
@@ -657,7 +658,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "province")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "province")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createProvince(String value) {
         return new JAXBElement<>(_Province_QNAME, String.class, null, value);
@@ -669,7 +670,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "locality_description")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "locality_description")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLocalityDescription(String value) {
         return new JAXBElement<>(_LocalityDescription_QNAME, String.class, null, value);
@@ -681,7 +682,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "original_archive")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "original_archive")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createOriginalArchive(String value) {
         return new JAXBElement<>(_OriginalArchive_QNAME, String.class, null, value);
@@ -693,7 +694,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "longitude")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "longitude")
     public JAXBElement<BigDecimal> createLongitude(BigDecimal value) {
         return new JAXBElement<>(_Longitude_QNAME, BigDecimal.class, null, value);
     }
@@ -704,7 +705,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "publish_date")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "publish_date")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPublishDate(String value) {
         return new JAXBElement<>(_PublishDate_QNAME, String.class, null, value);
@@ -716,7 +717,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "elevation")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "elevation")
     public JAXBElement<BigDecimal> createElevation(BigDecimal value) {
         return new JAXBElement<>(_Elevation_QNAME, BigDecimal.class, null, value);
     }
@@ -727,7 +728,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_date_precision")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collection_date_precision")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectionDatePrecision(String value) {
         return new JAXBElement<>(_CollectionDatePrecision_QNAME, String.class, null, value);
@@ -739,7 +740,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "material")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "material")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createMaterial(String value) {
         return new JAXBElement<>(_Material_QNAME, String.class, null, value);
@@ -751,7 +752,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "age_max")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "age_max")
     public JAXBElement<BigDecimal> createAgeMax(BigDecimal value) {
         return new JAXBElement<>(_AgeMax_QNAME, BigDecimal.class, null, value);
     }
@@ -762,7 +763,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "easting")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "easting")
     public JAXBElement<BigDecimal> createEasting(BigDecimal value) {
         return new JAXBElement<>(_Easting_QNAME, BigDecimal.class, null, value);
     }
@@ -773,7 +774,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "parent_igsn")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "parent_igsn")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createParentIgsn(String value) {
         return new JAXBElement<>(_ParentIgsn_QNAME, String.class, null, value);
@@ -785,7 +786,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "igsn")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "igsn")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createIgsn(String value) {
         return new JAXBElement<>(_Igsn_QNAME, String.class, null, value);
@@ -797,7 +798,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "navigation_type")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "navigation_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createNavigationType(String value) {
         return new JAXBElement<>(_NavigationType_QNAME, String.class, null, value);
@@ -809,7 +810,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_end_date")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collection_end_date")
     public JAXBElement<XMLGregorianCalendar> createCollectionEndDate(XMLGregorianCalendar value) {
         return new JAXBElement<>(_CollectionEndDate_QNAME, XMLGregorianCalendar.class, null, value);
     }
@@ -820,7 +821,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "zone")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "zone")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createZone(String value) {
         return new JAXBElement<>(_Zone_QNAME, String.class, null, value);
@@ -832,7 +833,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "locality")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "locality")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLocality(String value) {
         return new JAXBElement<>(_Locality_QNAME, String.class, null, value);
@@ -844,7 +845,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "launch_type_name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "launch_type_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLaunchTypeName(String value) {
         return new JAXBElement<>(_LaunchTypeName_QNAME, String.class, null, value);
@@ -856,7 +857,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "sample_type")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "sample_type")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSampleType(String value) {
         return new JAXBElement<>(_SampleType_QNAME, String.class, null, value);
@@ -868,7 +869,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "longitude_end")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "longitude_end")
     public JAXBElement<BigDecimal> createLongitudeEnd(BigDecimal value) {
         return new JAXBElement<>(_LongitudeEnd_QNAME, BigDecimal.class, null, value);
     }
@@ -879,7 +880,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "latitude_end")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "latitude_end")
     public JAXBElement<BigDecimal> createLatitudeEnd(BigDecimal value) {
         return new JAXBElement<>(_LatitudeEnd_QNAME, BigDecimal.class, null, value);
     }
@@ -890,7 +891,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "vertical_datum")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "vertical_datum")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createVerticalDatum(String value) {
         return new JAXBElement<>(_VerticalDatum_QNAME, String.class, null, value);
@@ -902,7 +903,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "launch_id")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "launch_id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createLaunchId(String value) {
         return new JAXBElement<>(_LaunchId_QNAME, String.class, null, value);
@@ -914,7 +915,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "age_min")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "age_min")
     public JAXBElement<BigDecimal> createAgeMin(BigDecimal value) {
         return new JAXBElement<>(_AgeMin_QNAME, BigDecimal.class, null, value);
     }
@@ -925,7 +926,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "classification_comment")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "classification_comment")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createClassificationComment(String value) {
         return new JAXBElement<>(_ClassificationComment_QNAME, String.class, null, value);
@@ -937,7 +938,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "purpose")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "purpose")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPurpose(String value) {
         return new JAXBElement<>(_Purpose_QNAME, String.class, null, value);
@@ -949,7 +950,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createName(String value) {
         return new JAXBElement<>(_Name_QNAME, String.class, null, value);
@@ -961,7 +962,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "sample_other_name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "sample_other_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createSampleOtherName(String value) {
         return new JAXBElement<>(_SampleOtherName_QNAME, String.class, null, value);
@@ -973,7 +974,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "elevation_end")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "elevation_end")
     public JAXBElement<BigDecimal> createElevationEnd(BigDecimal value) {
         return new JAXBElement<>(_ElevationEnd_QNAME, BigDecimal.class, null, value);
     }
@@ -984,7 +985,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collector")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collector")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollector(String value) {
         return new JAXBElement<>(_Collector_QNAME, String.class, null, value);
@@ -996,7 +997,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "geological_unit")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "geological_unit")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createGeologicalUnit(String value) {
         return new JAXBElement<>(_GeologicalUnit_QNAME, String.class, null, value);
@@ -1008,7 +1009,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "primary_location_name")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "primary_location_name")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createPrimaryLocationName(String value) {
         return new JAXBElement<>(_PrimaryLocationName_QNAME, String.class, null, value);
@@ -1020,7 +1021,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "depth_scale")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "depth_scale")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createDepthScale(String value) {
         return new JAXBElement<>(_DepthScale_QNAME, String.class, null, value);
@@ -1032,7 +1033,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "current_archive_contact")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "current_archive_contact")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCurrentArchiveContact(String value) {
         return new JAXBElement<>(_CurrentArchiveContact_QNAME, String.class, null, value);
@@ -1044,7 +1045,7 @@ public class ObjectFactory {
      * @param value
      * @return 
      */
-    @XmlElementDecl(namespace = "http://app.geosamples.org", name = "collection_method_descr")
+    @XmlElementDecl(namespace = GEOSAMPLES_URL, name = "collection_method_descr")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     public JAXBElement<String> createCollectionMethodDescr(String value) {
         return new JAXBElement<>(_CollectionMethodDescr_QNAME, String.class, null, value);

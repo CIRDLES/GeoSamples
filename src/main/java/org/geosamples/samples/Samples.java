@@ -557,16 +557,16 @@ public class Samples implements XMLDocumentInterface {
      * qrcodeImgSrc, url, parents, siblings, and children.
      *
      * @param sample = Sample object
+     * @param updating
      * @return boolean
      */
     public static boolean validateSampleForUpload(Sample sample, boolean updating) {
-        boolean isValid = true;
+        boolean isValid;
 
         if (updating) {
-            isValid = isValid && (sample.getUserCode() == null);
+            isValid = sample.getUserCode() == null;
         } else {
-            isValid = isValid && (sample.getUserCode() != null);
-
+            isValid = sample.getUserCode() != null;
         }
 
         isValid = isValid && checkThatValueIsLegal(SampleType.class, sample.getSampleType(), !updating);
@@ -589,8 +589,9 @@ public class Samples implements XMLDocumentInterface {
         if (isLegal) {
             try {
                 Enum.valueOf(enumType, name.toUpperCase().replaceAll(" ", "_"));
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException ex) {
                 isLegal = false;
+                Logger.getLogger(Samples.class.getName()).log(Level.WARNING, null, ex);
             }
         } else {
             isLegal = !required;
@@ -2889,6 +2890,7 @@ public class Samples implements XMLDocumentInterface {
         try {
             updateSampleMetaDataWithSesarTestService("bowring@gmail.com", "redux00", mySamples);
         } catch (JAXBException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException jAXBException) {
+             Logger.getLogger(Samples.class.getName()).log(Level.WARNING, null, jAXBException);
         }
 
     }

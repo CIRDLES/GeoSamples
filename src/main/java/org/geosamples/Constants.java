@@ -21,25 +21,31 @@ package org.geosamples;
  */
 public class Constants {
 
-    public static String GEOSAMPLES_PRODUCTION_SERVER = "https://app.geosamples.org/";
+    public static final String GEOSAMPLES_PRODUCTION_SERVER = "https://app.geosamples.org/";
 
-    public static String GEOSAMPLES_TEST_SAMPLES_SERVER = "https://sesardev.geosamples.org/";
+    public static final String GEOSAMPLES_TEST_SAMPLES_SERVER = "https://sesardev.geosamples.org/";
 
-    public static String GEOSAMPLES_TEST_FEATURES_SERVER = "https://sesar3.geosamples.org/";
+    public static final String GEOSAMPLES_TEST_FEATURES_SERVER = "https://sesar3.geosamples.org/";
 
-    public static String GEOSAMPLES_SAMPLE_IGSN_WEBSERVICE_NAME = "sample/IGSN/";
+    public static final String GEOSAMPLES_SAMPLE_IGSN_WEBSERVICE_NAME = "sample/IGSN/";
 
-    public static String GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME = "webservices/credentials_service.php";
-
-    public static String GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME = "webservices/upload.php";
+    public static final String GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME = "webservices/credentials_service.php";
     
-    public static String GEOSAMPLES_SAMPLE_LIST_PER_USERCODE_WEBSERVICE_NAME = "samples/user_code/";
+    public static final String GEOSAMPLES_CREDENTIALS_WEBSERVICE_NAME_V2 = "webservices/credentials_service_v2.php";
     
-    public static String GEOSAMPLES_SAMPLE_UPDATE_IGSN_WEBSERVICE_NAME = "webservices/update.php";
+    public static final String GEOSAMPLES_SAMPLE_UPLOAD_WEBSERVICE_NAME = "webservices/upload.php";
 
-    public static String GEOSAMPLES_COMPLIANT_XML_HEADER_SAMPLES = "<samples xmlns=\"http://app.geosamples.org\" \n"
+    public static final String GEOSAMPLES_SAMPLE_LIST_PER_USERCODE_WEBSERVICE_NAME = "samples/user_code/";
+
+    public static final String GEOSAMPLES_SAMPLE_UPDATE_IGSN_WEBSERVICE_NAME = "webservices/update.php";
+
+    public static final String GEOSAMPLES_COMPLIANT_XML_HEADER_SAMPLES = "<samples xmlns=\"http://app.geosamples.org\" \n"
             + "           xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n"
             + "           xsi:schemaLocation=\"https://app.geosamples.org\n"
             + "                                https://app.geosamples.org/samplev2.xsd \">";
+
+    private Constants() {
+        throw new IllegalAccessError("Utility class");
+    }
 
 }
